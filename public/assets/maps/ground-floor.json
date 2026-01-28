@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "viewBox": "0 0 1920 1080",
+    "title": "Ground Floor Production Map"
+  },
+  "features": [
+    { "type": "Feature", "properties": { "id": "GF_corridor", "name": "Main Corridor", "type": "path" }, "geometry": { "type": "Polygon", "coordinates": [[[1719.4, 379.9], [1719.4, 332.9], [200.9, 332.9], [200.9, 381.9], [548.4, 381.9], [548.4, 707.7], [285.5, 707.7], [285.5, 746.5], [1719.4, 746.5], [1719.4, 711.8], [1369, 711.8], [1369, 379.9], [1719.4, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "basemenrt_parking", "name": "BASEMENT PARKING", "type": "service", "icon": "parking" }, "geometry": { "type": "Polygon", "coordinates": [[[200.9, 483], [285.5, 483], [285.5, 746.5], [200.9, 746.5], [200.9, 483]]] } },
+    { "type": "Feature", "properties": { "id": "e-shop1", "name": "EMPTY SPACE 1", "type": "empty" }, "geometry": { "type": "Polygon", "coordinates": [[[548.3, 381.9], [548.3, 707.7], [436, 707.7], [436, 439.1], [480.5, 439.1], [480.5, 381.9], [548.3, 381.9]]] } },
+    { "type": "Feature", "properties": { "id": "e-shop2", "name": "EMPTY SPACE 2", "type": "empty" }, "geometry": { "type": "Polygon", "coordinates": [[[436, 439.1], [436, 707.7], [285.5, 707.7], [285.5, 483], [200.9, 483], [200.9, 381.9], [316, 381.9], [316, 439.1], [436, 439.1]]] } },
+    { "type": "Feature", "properties": { "id": "sketchers", "name": "SKETCHERS", "type": "retail", "logo": "assets/logos/sketchers.png" }, "geometry": { "type": "Polygon", "coordinates": [[[719.6, 437.7], [719.6, 707.4], [608.8, 707.4], [608.8, 381.9], [675.3, 381.9], [675.3, 437.7], [719.6, 437.7]]] } },
+    { "type": "Feature", "properties": { "id": "ndure", "name": "NDURE", "type": "retail", "logo": "assets/logos/ndure.png" }, "geometry": { "type": "Polygon", "coordinates": [[[719.6, 437.7], [836.6, 437.7], [836.6, 707.4], [719.6, 707.4], [719.6, 437.7]]] } },
+    { "type": "Feature", "properties": { "id": "levis", "name": "LEVIS", "type": "retail", "logo": "assets/logos/levis.png" }, "geometry": { "type": "Polygon", "coordinates": [[[836.6, 381.9], [927.7, 381.9], [927.7, 707.4], [836.6, 707.4], [836.6, 381.9]]] } },
+    { "type": "Feature", "properties": { "id": "hush_puppies", "name": "HUSH PUPPIES", "type": "retail", "logo": "assets/logos/hush_puppies.png" }, "geometry": { "type": "Polygon", "coordinates": [[[987.6, 379.9], [1071.8, 379.9], [1071.8, 707.7], [987.6, 707.7], [987.6, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "bata", "name": "BATA", "type": "retail", "logo": "assets/logos/bata.png" }, "geometry": { "type": "Polygon", "coordinates": [[[1071.8, 439.1], [1197.5, 439.1], [1197.5, 707.7], [1071.8, 707.7], [1071.8, 439.1]]] } },
+    { "type": "Feature", "properties": { "id": "stylo", "name": "STYLO", "type": "retail", "logo": "assets/logos/stylo.png" }, "geometry": { "type": "Polygon", "coordinates": [[[1308.5, 379.9], [1308.5, 707.7], [1197.5, 707.7], [1197.5, 439.1], [1240.8, 439.1], [1240.8, 379.9], [1308.5, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "companion", "name": "COMPANION", "type": "retail", "logo": "assets/logos/companion.png" }, "geometry": { "type": "Polygon", "coordinates": [[[1478.8, 437], [1478.8, 711.8], [1369, 711.8], [1369, 379.9], [1436.9, 379.9], [1436.9, 437], [1478.8, 437]]] } },
+    { "type": "Feature", "properties": { "id": "walk_eaze", "name": "WALK EAZE", "type": "retail", "logo": "assets/logos/walk_eaze.png" }, "geometry": { "type": "Polygon", "coordinates": [[[1478.8, 437], [1588.6, 437], [1588.6, 711.8], [1478.8, 711.8], [1478.8, 437]]] } },
+    { "type": "Feature", "properties": { "id": "mcdonalds", "name": "MCDONALDS", "type": "food", "logo": "assets/logos/mcdonalds.png" }, "geometry": { "type": "Polygon", "coordinates": [[[1719.4, 379.9], [1719.4, 711.8], [1588.6, 711.8], [1588.6, 437], [1597.4, 437], [1597.4, 379.9], [1719.4, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "lift1", "name": "LIFT 1", "type": "service", "icon": "lift" }, "geometry": { "type": "Polygon", "coordinates": [[[764.5, 381.9], [836.6, 381.9], [836.6, 437.7], [764.5, 437.7], [764.5, 381.9]]] } },
+    { "type": "Feature", "properties": { "id": "lift2", "name": "LIFT 2", "type": "service", "icon": "lift" }, "geometry": { "type": "Polygon", "coordinates": [[[1071.8, 379.9], [1148.3, 379.9], [1148.3, 439.1], [1071.8, 439.1], [1071.8, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "lift3", "name": "LIFT 3", "type": "service", "icon": "lift" }, "geometry": { "type": "Polygon", "coordinates": [[[1523.8, 379.9], [1597.4, 379.9], [1597.4, 437.0], [1523.8, 437.0], [1523.8, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "stairs1", "name": "STAIRS 1", "type": "service", "icon": "stair" }, "geometry": { "type": "Polygon", "coordinates": [[[316.0, 381.9], [480.5, 381.9], [480.5, 439.1], [316.0, 439.1], [316.0, 381.9]]] } },
+    { "type": "Feature", "properties": { "id": "stairs2", "name": "STAIRS 2", "type": "service", "icon": "stair" }, "geometry": { "type": "Polygon", "coordinates": [[[675.3, 381.9], [764.5, 381.9], [764.5, 437.8], [675.3, 437.8], [675.3, 381.9]]] } },
+    { "type": "Feature", "properties": { "id": "stairs3", "name": "STAIRS 3", "type": "service", "icon": "stair" }, "geometry": { "type": "Polygon", "coordinates": [[[1148.3, 379.9], [1240.8, 379.9], [1240.8, 439.1], [1148.3, 439.1], [1148.3, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "stairs4", "name": "STAIRS 4", "type": "service", "icon": "stair" }, "geometry": { "type": "Polygon", "coordinates": [[[1436.9, 379.9], [1523.8, 379.9], [1523.8, 437.1], [1436.9, 437.1], [1436.9, 379.9]]] } },
+    { "type": "Feature", "properties": { "id": "entry", "name": "ENTRY", "type": "service", "icon": "entry" }, "geometry": { "type": "Polygon", "coordinates": [[[1319.3, 702.1], [1358.7, 702.1], [1358.7, 741.5], [1319.3, 741.5], [1319.3, 702.1]]] } },
+    { "type": "Feature", "properties": { "id": "exit", "name": "EXIT", "type": "service", "icon": "exit" }, "geometry": { "type": "Polygon", "coordinates": [[[558.8, 702.1], [598.2, 702.1], [598.2, 741.5], [558.8, 741.5], [558.8, 702.1]]] } },
+    { "type": "Feature", "properties": { "id": "escalator_up", "name": "ESCALATOR UP", "type": "service", "icon": "escalator_up" }, "geometry": { "type": "Polygon", "coordinates": [[[1313, 603.2], [1365, 603.2], [1365, 654.8], [1313, 654.8], [1313, 603.2]]] } },
+    { "type": "Feature", "properties": { "id": "escalator_down", "name": "ESCALATOR DOWN", "type": "service", "icon": "escalator_down" }, "geometry": { "type": "Polygon", "coordinates": [[[552.8, 603.2], [604.4, 603.2], [604.4, 654.8], [552.8, 654.8], [552.8, 603.2]]] } }
+  ]
+}

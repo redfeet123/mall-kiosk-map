@@ -1,0 +1,152 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "viewBox": "0 0 1920 1080",
+    "title": "Restaurant Floor Production Map"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "rf_wall", "name": "Floor Boundary", "type": "wall" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[194, 318], [1713, 318], [1713, 724], [194, 724], [194, 318]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "rf_corridor", "name": "Food Court Corridor", "type": "path" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [1682, 359], [1682, 688], [1364, 688], [1364, 641], [1303, 641], [1303, 688], 
+          [984, 688], [984, 641], [923, 641], [923, 688], [604, 688], [604, 641], 
+          [543, 641], [543, 688], [224, 688], [224, 359], [1682, 359]
+        ]]
+      }
+    },
+    {
+  "type": "Feature",
+  "properties": { 
+    "id": "peak-a-bear", 
+    "name": "PEAK-A-BEAR", 
+    "type": "fun" 
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[
+      [923.2, 432.7], 
+      [923.2, 566.2], 
+      [885.8, 581.3], 
+      [320.3, 581.3], 
+      [320.3, 456.1], 
+      [378.1, 432.7],
+      [923.2, 432.7]
+    ]]
+  }
+},
+    {
+      "type": "Feature",
+      "properties": { "id": "taj-darbar", "name": "TAJ DARBAR", "type": "food" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1233, 452], [1233, 581], [1001, 581], [985, 567], [985, 433], [1213, 433], [1233, 452]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "angeethi", "name": "ANGEETHI", "type": "food" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1682, 433], [1682, 581], [1434, 581], [1434, 454], [1456, 433], [1682, 433]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "bridge-1", "name": "BRIDGE EAST", "type": "path" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1303, 453], [1364, 453], [1364, 614], [1303, 614], [1303, 453]]]
+      }
+    },
+
+    {
+      "type": "Feature",
+      "properties": { "id": "e-shop6", "name": "EMPTY SPACE", "type": "empty" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[224, 359], [310, 359], [310, 581], [224, 581], [224, 359]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs1", "name": "STAIRS 1", "type": "service", "icon": "stair" },
+      "geometry": { "type": "Polygon", "coordinates": [[[310, 359], [474, 359], [474, 406], [310, 406], [310, 359]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs2", "name": "STAIRS 2", "type": "service", "icon": "stair" },
+      "geometry": { "type": "Polygon", "coordinates": [[[673, 359], [757, 359], [757, 406], [673, 406], [673, 359]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "lift1", "name": "LIFT 1", "type": "service", "icon": "lift" },
+      "geometry": { "type": "Polygon", "coordinates": [[[757, 359], [835, 359], [835, 406], [757, 406], [757, 359]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "lift2", "name": "LIFT 2", "type": "service", "icon": "lift" },
+      "geometry": { "type": "Polygon", "coordinates": [[[1070, 359], [1146, 359], [1146, 406], [1070, 406], [1070, 359]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "male-restroom1", "name": "MALE RESTROOM", "type": "service", "icon": "male-restroom" },
+      "geometry": { "type": "Polygon", "coordinates": [[[475, 359], [545, 359], [545, 406], [475, 406], [475, 359]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "female-restroom1", "name": "FEMALE RESTROOM", "type": "service", "icon": "female-restroom" },
+      "geometry": { "type": "Polygon", "coordinates": [[[603, 359], [673, 359], [673, 406], [603, 406], [603, 359]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "male-restroom2", "name": "MALE RESTROOM 2", "type": "service", "icon": "male-restroom" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1233.3, 359.1], [1301.3, 359.1], [1301.3, 406.1], [1233.3, 406.1], [1233.3, 359.1]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "female-restroom2", "name": "FEMALE RESTROOM 2", "type": "service", "icon": "female-restroom" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1364, 359.6], [1434, 359.6], [1434, 406.6], [1364, 406.6], [1364, 359.6]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs3", "name": "STAIRS 3", "type": "service", "icon": "stair" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1146.4, 359.1], [1233.4, 359.1], [1233.4, 406.1], [1146.4, 406.1], [1146.4, 359.1]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs4", "name": "STAIRS 4", "type": "service", "icon": "stair" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1434, 359.6], [1521, 359.6], [1521, 406.6], [1434, 406.6], [1434, 359.6]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "escalator_down_rf", "name": "ESCALATOR DOWN", "type": "service", "icon": "escalator_down" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1307.6, 547.3], [1359.2, 547.3], [1359.2, 598.9], [1307.6, 598.9], [1307.6, 547.3]]]
+      }
+    }
+  ]
+}

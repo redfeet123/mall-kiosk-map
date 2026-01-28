@@ -1,0 +1,195 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "viewBox": "0 0 1920 1080",
+    "title": "First Floor Production Map"
+  },
+  "features": [
+{
+      "type": "Feature",
+      "properties": { 
+        "id": "wall", 
+        "name": "Floor Boundary", 
+        "type": "empty" 
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [204, 310], 
+          [1724, 310], 
+          [1724, 722], 
+          [204, 722], 
+          [204, 310]
+        ]]
+      }
+    },
+
+
+
+    {
+      "type": "Feature",
+      "properties": { "id": "1f_corridor", "name": "Main Corridor", "type": "path" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [1528.5, 397.5], [1528.5, 446.5], [1373.5, 446.5], [1373.5, 678.5], 
+          [1311.5, 678.5], [1311.5, 446.5], [994.5, 446.5], [994.5, 678.5], 
+          [932.5, 678.5], [932.5, 446.5], [615.5, 446.5], [615.5, 678.5], 
+          [552.5, 678.5], [552.5, 446.5], [484.5, 446.5], [484.5, 397.5], 
+          [554.5, 397.5], [554.5, 350.5], [614.5, 350.5], [614.5, 397.5], 
+          [846.5, 397.5], [846.5, 350.5], [1079.5, 350.5], [1079.5, 397.5], 
+          [1312.5, 397.5], [1312.5, 350.5], [1373.5, 350.5], [1373.5, 397.5], 
+          [1528.5, 397.5]
+        ]]
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": { "id": "mcdonalds", "name": "MCDONALDS", "type": "food" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1690.5, 350.5], [1690.5, 678.5], [1483, 678.5], [1483, 446.5], [1529, 446.5], [1529, 350.5], [1690.5, 350.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "engine", "name": "ENGINE", "type": "retail" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[995, 447], [1311, 447], [1311, 678], [995, 678], [995, 447]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "shahzaib-saeed", "name": "SHAHZAIB SAEED", "type": "retail" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[850, 447], [932, 447], [932, 678], [850, 678], [850, 447]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "habib-metro-bank", "name": "HABIB METRO BANK", "type": "retail" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[616, 447], [723, 447], [723, 678], [616, 678], [616, 447]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "e-shop3", "name": "E-SHOP 3", "type": "empty" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[552, 447], [552, 678], [236, 678], [236, 351], [321, 351], [321, 398], [485, 398], [485, 447], [552, 447]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "e-shop4", "name": "E-SHOP 4", "type": "empty" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[724, 447], [849, 447], [849, 678], [724, 678], [724, 447]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "e-shop5", "name": "E-SHOP 5", "type": "empty" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1374, 447], [1482, 447], [1482, 678], [1374, 678], [1374, 447]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "lift1", "name": "LIFT 1", "type": "service", "icon": "lift" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[769, 351], [846, 351], [846, 397], [769, 397], [769, 351]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "lift2", "name": "LIFT 2", "type": "service", "icon": "lift" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1080, 351], [1155, 351], [1155, 397], [1080, 397], [1080, 351]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs1", "name": "STAIRS 1", "type": "service", "icon": "stair" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[321, 351], [484, 351], [484, 397], [321, 397], [321, 351]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs2", "name": "STAIRS 2", "type": "service", "icon": "stair" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[685, 351], [768, 351], [768, 397], [685, 397], [685, 351]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs3", "name": "STAIRS 3", "type": "service", "icon": "stair" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1156, 351], [1242, 351], [1242, 397], [1156, 397], [1156, 351]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "stairs4", "name": "STAIRS 4", "type": "service", "icon": "stair" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1442, 351], [1528, 351], [1528, 397], [1442, 397], [1442, 351]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "escalator_up", "name": "ESCALATOR UP", "type": "service", "icon": "escalator_up" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[935, 461.5], [992, 461.5], [992, 513.1], [935, 513.1], [935, 461.5]]]
+      }
+    },
+
+    { "type": "Feature", "properties": { "id": "escalator_down", "name": "ESCALATOR DOWN", "type": "service", "icon": "escalator_down" }, "geometry": { "type": "Polygon", "coordinates": [[[552.8, 603.2], [604.4, 603.2], [604.4, 654.8], [552.8, 654.8], [552.8, 603.2]]] } },
+
+    {
+      "type": "Feature",
+      "properties": { "id": "male-restroom1", "name": "MALE RESTROOM", "type": "service", "icon": "male-restroom" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[484.5, 350.5], [554.5, 350.5], [554.5, 397.5], [484.5, 397.5], [484.5, 350.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "female-restroom1", "name": "FEMALE RESTROOM", "type": "service", "icon": "female-restroom" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[614.5, 350.5], [684.5, 350.5], [684.5, 397.5], [614.5, 397.5], [614.5, 350.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "female-restroom2", "name": "FEMALE RESTROOM 2", "type": "service", "icon": "female-restroom" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1242.5, 350.5], [1312.5, 350.5], [1312.5, 397.5], [1242.5, 397.5], [1242.5, 350.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "male-restroom2", "name": "MALE RESTROOM 2", "type": "service", "icon": "male-restroom" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[1373.5, 350.5], [1441.5, 350.5], [1441.5, 397.5], [1373.5, 397.5], [1373.5, 350.5]]]
+      }
+    }
+  ]
+}
