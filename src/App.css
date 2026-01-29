@@ -4,6 +4,10 @@
     font-weight: 600;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
