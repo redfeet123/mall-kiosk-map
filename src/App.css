@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'Berlin Sans FB Demi Bold';
     src: url('assets/fonts/Inter-SemiBold.otf') format('truetype');
+    font-weight: 600;
 }
 
 * {
