@@ -70,7 +70,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "id": "habib-metro-bank", "name": "HABIB METRO BANK", "type": "retail" },
+      "properties": { "id": "habib-metro-bank", "name": "HABIB METRO BANK", "type": "banking" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[[616, 447], [723, 447], [723, 678], [616, 678], [616, 447]]]
@@ -157,7 +157,7 @@
       }
     },
 
-    { "type": "Feature", "properties": { "id": "escalator_down", "name": "ESCALATOR DOWN", "type": "service", "icon": "escalator_down" }, "geometry": { "type": "Polygon", "coordinates": [[[552.8, 603.2], [604.4, 603.2], [604.4, 654.8], [552.8, 654.8], [552.8, 603.2]]] } },
+    { "type": "Feature", "properties": { "id": "escalator_down", "name": "ESCALATOR DOWN", "type": "service", "icon": "escalator_down" }, "geometry": { "type": "Polygon", "coordinates": [[[552.8, 450], [612, 450], [612, 500], [558, 500], [558, 450]]] } },
 
     {
       "type": "Feature",

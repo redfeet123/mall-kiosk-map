@@ -25,7 +25,7 @@ const App = () => {
             .filter(f => {
               const type = f.properties.type;
               const id = f.properties.id.toLowerCase();
-              const isValidType = (type === 'retail' || type === 'food' || type === 'fun');
+              const isValidType = (type === 'retail' || type === 'food' || type === 'fun' || type === 'banking');
               const isNotPlaceholder = !id.includes('e-shop') && !id.includes('wall') && !id.includes('corridor');
               return isValidType && isNotPlaceholder;
             })
@@ -139,6 +139,8 @@ const App = () => {
                     return `Experience delicious dining at ${name}. Visit us on the ${floor}.`;
                   } else if (type === 'fun') {
                     return `Enjoy exciting entertainment at ${name}. Visit us on the ${floor}.`;
+                  } else if (type === 'banking') {
+                    return `Banking services available at ${name}. Visit us on the ${floor}.`;
                   } else {
                     return `Experience premium shopping at ${name}. Visit us on the ${floor}.`;
                   }

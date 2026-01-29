@@ -148,9 +148,9 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             <div class="label">YOU ARE HERE</div>
         `;
         const marker = new CSS2DObject(div);
-        const kioskX = 1400;
-        const kioskY = 730;
-        marker.position.set(kioskX - OFFSET_X, 25, kioskY - OFFSET_Y);
+        const kioskX = 1350;
+        const kioskY = 700;
+        marker.position.set(kioskX - OFFSET_X, 2, kioskY - OFFSET_Y);
         scene.add(marker);
     };
 
@@ -234,7 +234,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
     };
 
     const addLabels = (mesh, props, scene) => {
-        if (props.type === 'retail' || props.type === 'food' || props.type === 'fun') {
+        if (props.type === 'retail' || props.type === 'food' || props.type === 'fun' || props.type === 'banking') {
             // ✅ First floor ke e-shop ko skip karo
             if (floor === 'first-floor' && props.id.toLowerCase().includes('e-shop')) {
                 return;

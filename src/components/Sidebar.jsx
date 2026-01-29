@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 const Sidebar = ({ stores, time, onStoreSelect }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
-    // 1. Filter: Retail, Food aur Fun types ko nikaalna
+    // 1. Filter: Retail, Food, Fun, aur Banking types ko nikaalna
     // Hum sirf unhe dikhayenge jin ka valid name ho
     const allBrandsRaw = stores.filter(s =>
-        (s.properties.type === 'retail' || s.properties.type === 'food' || s.properties.type === 'fun') &&
+        (s.properties.type === 'retail' || s.properties.type === 'food' || s.properties.type === 'fun' || s.properties.type === 'banking') &&
         s.properties.name
     );
 
@@ -84,7 +84,8 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
                                     <span className="store-name">{name}</span>
                                     <span className={`store-category-pill ${type}`}>
                                         {type === 'food' ? 'Dining' :
-                                         type === 'fun' ? 'Entertainment' : 'Fashion'}
+                                         type === 'fun' ? 'Entertainment' : 
+                                         type === 'banking' ? 'Banking' : 'Fashion'}
                                     </span>
                                 </div>
                                 <div className="arrow-icon">→</div>

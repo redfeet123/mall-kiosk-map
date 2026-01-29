@@ -1,6 +1,10 @@
 @font-face {
     font-family: 'Berlin Sans FB Demi Bold';
-    src: url('assets/fonts/Inter-SemiBold.otf') format('truetype');
+    src: url('/public/assets/fonts/Inter-SemiBold.otf') format('truetype');
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 * {
@@ -339,6 +343,65 @@ html {
     border-color: #3b82f6;
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
+
+.store-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.store-category-pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+}
+
+.store-category-pill.retail {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.store-category-pill.food {
+    background: #fed7aa;
+    color: #9a3412;
+}
+
+.store-category-pill.fun {
+    background: #e9d5ff;
+    color: #6b21a8;
+}
+
+.store-category-pill.banking {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* ✅ Arrow Icon - right side pe */
+.arrow-icon {
+    font-size: 28px;
+    color: #94a3b8;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* ✅ No Results Message */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: #64748b;
+}
+
+.no-results p {
+    font-size: 20px;
+    margin: 0;
+}
+
 
 .you-are-here-marker {
     display: flex;
