@@ -7,75 +7,120 @@ import Legend from './Legend';
 const OFFSET_X = 960;
 const OFFSET_Y = 540;
 
+// ✅ Floor-wise Navigation Data
 const NAVIGATION_DATA = {
-    'hush_puppies': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 1019, y: 725 },
-        { x: 1016, y: 703 }
-    ],
+    'ground-floor': {
+        'hush_puppies': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 1019, y: 725 },
+            // { x: 1016, y: 703 }
+        ],
+        'sketchers': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 659, y: 722 },
+            // { x: 657, y: 703 }
+        ],
+        'ndure': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 780, y: 726 },
+            // { x: 773, y: 702 }
+        ],
+        'levis': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 875, y: 727 },
+            // { x: 869, y: 705 }
+        ],
+        'bata': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 1126, y: 728 },
+            // { x: 1122, y: 702 }
+        ],
+        'stylo': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 1255, y: 724 },
+            // { x: 1246, y: 705 }
+        ],
+        'companion': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 1431, y: 730 },
+            // { x: 1425, y: 709 }
+        ],
+        'walk_eaze': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 1534, y: 730 },
+            // { x: 1528, y: 711 }
+        ],
+        'mcdonalds': [
+            { x: 1349, y: 680 },
+            { x: 1354, y: 724 },
+            { x: 1655, y: 728 },
+            // { x: 1649, y: 709 }
+        ],
+        'stairs3': [
+            { x: 1349, y: 680 },
+            { x: 1324, y: 354 },
+            { x: 1183, y: 347 },
+            // { x: 1185, y: 373 }
+        ],
+        'stairs4': [
+            { x: 1349, y: 680 },
+            { x: 1324, y: 354 },
+            { x: 1466, y: 348 },
+            // { x: 1471, y: 375 }
+        ],
+        'lift3': [
+            { x: 1349, y: 680 },
+            { x: 1324, y: 354 },
+            { x: 1547, y: 352 },
+            // { x: 1550, y: 375 }
+        ],
 
-    'sketchers': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 659, y: 722 },
-        { x: 657, y: 703 }
-    ],
+        'lift2': [
+            { x: 1349, y: 680 },
+            { x: 1324, y: 354 },
+            { x: 1091, y: 345 },
+            // { x: 1101, y: 375 }
+        ],
+        'lift1': [
+            { x: 1349, y: 680 },
+            { x: 1357, y: 724 },
+            { x: 952, y: 726 },
+            { x: 944, y: 353 },
+            { x: 774, y: 348 },
+            // { x: 786, y: 374 }
+        ],
+        'stairs2': [
+            { x: 1349, y: 680 },
+            { x: 1357, y: 724 },
+            { x: 952, y: 726 },
+            { x: 944, y: 353 },
+            { x: 699, y: 347 },
+            // { x: 706, y: 378 }
+        ],
+        'exit': [
+            { x: 1349, y: 680 },
+            { x: 1357, y: 724 },
+            { x: 596, y: 719 }
+        ],
 
-    'ndure': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 780, y: 726 },
-        { x: 773, y: 702 }
-    ],
-
-    'levis': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 875, y: 727 },
-        { x: 869, y: 705 }
-    ],
-
-    'bata': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 1126, y: 728 },
-        { x: 1122, y: 702 }
-    ],
-    'stylo': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 1255, y: 724 },
-        { x: 1246, y: 705 }
-    ],
-    'companion': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 1431, y: 730 },
-        { x: 1425, y: 709 }
-    ],
-    'walk_eaze': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 1534, y: 730 },
-        { x: 1528, y: 711 }
-    ],
-    'mcdonalds': [
-        { x: 1349, y: 680 },
-        { x: 1354, y: 724 },
-        { x: 1655, y: 728 },
-        { x: 1649, y: 709 }
-    ],
-    'stairs3': [
-        { x: 1349, y: 680 },
-        { x: 1324, y: 354 },
-        { x: 1183, y: 347 },
-        { x: 1185, y: 373 }
-    ],
-
+    },
+    'first-floor': {
+        // First floor ke routes yahan add karoge
+    },
+    'restaurant-floor': {
+        // Restaurant floor ke routes yahan add karoge
+    }
 };
 
-const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
+const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
     const mountRef = useRef(null);
     const sceneRef = useRef(new THREE.Scene());
     const cameraRef = useRef();
@@ -84,14 +129,17 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
     const labelRendererRef = useRef();
     const circleTextureRef = useRef(null);
     const onMapClickRef = useRef(onMapClick);
-    const animationFrameRef = useRef(null); // ✅ Track animation frame
-    const isUnmountingRef = useRef(false); // ✅ Track unmount state
+    const animationFrameRef = useRef(null);
+    const isUnmountingRef = useRef(false);
 
     useEffect(() => {
         onMapClickRef.current = onMapClick;
     }, [onMapClick]);
 
+    // ✅ "YOU ARE HERE" marker sirf Ground Floor pe
     const addYouAreHere = (scene) => {
+        if (floor !== 'ground-floor') return;
+
         const div = document.createElement('div');
         div.className = 'you-are-here-marker';
         div.innerHTML = `
@@ -122,7 +170,7 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
     };
 
     const drawDynamicRoute = (scene, targetId) => {
-        console.log("Drawing route for:", targetId);
+        console.log("Drawing route for:", targetId, "on floor:", floor);
         const oldRoute = scene.getObjectByName("active-route");
 
         if (oldRoute && oldRoute.userData.targetId === targetId) return;
@@ -138,9 +186,9 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
             scene.remove(oldRoute);
         }
 
-        const pathPoints = NAVIGATION_DATA[targetId];
+        const pathPoints = NAVIGATION_DATA[floor]?.[targetId];
         if (!pathPoints) {
-            console.warn("No path data found for ID:", targetId);
+            console.warn("No path data found for ID:", targetId, "on floor:", floor);
             return;
         }
 
@@ -158,13 +206,13 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
 
         const geometry = new THREE.BufferGeometry().setFromPoints(straightPoints);
         const material = new THREE.PointsMaterial({
-            color: 0x000000,          // <--- Pure Black Color
-            size: 10,                 // Dots ka size (aap 8-12 ke darmiyan rakh sakte hain)
-            map: getCircleTexture(),  // Isse square dot round ho jayega
+            color: 0x000000,
+            size: 10,
+            map: getCircleTexture(),
             transparent: true,
-            alphaTest: 0.1,           // Background transparency ke liye
-            sizeAttenuation: true,         // Taake dots objects ke peeche chhup saken
-            depthWrite: false         // Taake dots ek dusre ko overlap karte waqt glitch na karen
+            alphaTest: 0.1,
+            sizeAttenuation: true,
+            depthWrite: false
         });
 
         const route = new THREE.Points(geometry, material);
@@ -186,17 +234,22 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
     };
 
     const addLabels = (mesh, props, scene) => {
-        if (props.type === 'retail' || props.type === 'food') {
+        if (props.type === 'retail' || props.type === 'food' || props.type === 'fun') {
+            // ✅ First floor ke e-shop ko skip karo
+            if (floor === 'first-floor' && props.id.toLowerCase().includes('e-shop')) {
+                return;
+            }
+
             const wrapper = document.createElement('div');
             wrapper.className = 'shop-label-wrapper';
             wrapper.dataset.storeId = props.id;
 
             wrapper.innerHTML = `
-            <div class="shop-circle">
-                <img src="/assets/logos/${props.id}.png" onerror="this.src='/assets/logos/default.png'">
-            </div>
-            <div class="shop-name-tag">${props.name}</div>
-        `;
+                <div class="shop-circle">
+                    <img src="/assets/logos/${props.id}.png" onerror="this.src='/assets/logos/default.png'">
+                </div>
+                <div class="shop-name-tag">${props.name}</div>
+            `;
 
             const handleClick = (e) => {
                 e.preventDefault();
@@ -206,27 +259,21 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
                 }
             };
 
-            // Click Events
             wrapper.addEventListener('click', handleClick, false);
             wrapper.addEventListener('touchend', (e) => {
                 e.preventDefault();
                 handleClick(e);
             }, false);
 
-            // ✅ JS SCALE LISTENERS DELETE KAR DIYE
-            // Isse wiggle khatam ho jayega kyunke transform clash nahi hoga.
-
             const label = new CSS2DObject(wrapper);
             mesh.geometry.computeBoundingBox();
             const center = new THREE.Vector3();
             mesh.geometry.boundingBox.getCenter(center);
 
-            // Position set
             label.position.set(center.x, mesh.position.y + 10, center.y);
             scene.add(label);
 
         } else if (props.icon) {
-            // ... (Baaki icon logic same rahega)
             const textureLoader = new THREE.TextureLoader();
             let iconName = props.icon === 'lift' ? 'elevator' : (props.icon === 'stair' ? 'stairs' : props.icon);
             textureLoader.load(`/assets/icons/${iconName}.svg`, (texture) => {
@@ -253,8 +300,9 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
             });
         }
     };
+
     useEffect(() => {
-        isUnmountingRef.current = false; // ✅ Reset on mount
+        isUnmountingRef.current = false;
         const container = mountRef.current;
         const scene = sceneRef.current;
         const width = container.clientWidth;
@@ -271,7 +319,7 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
 
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
-            precision: "highp", // High precision calculations
+            precision: "highp",
             powerPreference: "high-performance"
         });
         renderer.setSize(width, height);
@@ -282,7 +330,6 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
         renderer.domElement.style.width = '100%';
         renderer.domElement.style.height = '100%';
         container.appendChild(renderer.domElement);
-
 
         const labelRenderer = new CSS2DRenderer();
         labelRenderer.setSize(width, height);
@@ -298,7 +345,7 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
-        controls.dampingFactor = 0.15; // ✅ 0.05 se 0.1 karo (smoother)
+        controls.dampingFactor = 0.15;
         controls.maxPolarAngle = Math.PI / 2.5;
         controls.minZoom = 0.5;
         controls.maxZoom = 2.0;
@@ -322,7 +369,7 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
             const raycaster = new THREE.Raycaster();
             raycaster.setFromCamera(mouse, cameraRef.current);
 
-            // ✅ YEH ADD KAREIN - Ground plane pe click coordinates
+            // Ground plane coordinates (for debugging)
             const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
             const intersectPoint = new THREE.Vector3();
             raycaster.ray.intersectPlane(groundPlane, intersectPoint);
@@ -344,12 +391,21 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
 
                 const data = target?.userData;
 
-                // handlePointer function ke andar is line ko update karein:
                 if (data?.id) {
-                    console.log("Clicked ID:", data.id); // Check karne ke liye
+                    console.log("Clicked ID:", data.id);
                     if (onMapClickRef.current) {
                         onMapClickRef.current(data.id);
                     }
+                } else {
+                    // ✅ Plain surface (no ID) clicked - clear selection
+                    if (onMapClickRef.current) {
+                        onMapClickRef.current(null);
+                    }
+                }
+            } else {
+                // ✅ Empty area clicked - clear selection
+                if (onMapClickRef.current) {
+                    onMapClickRef.current(null);
                 }
             }
         };
@@ -366,17 +422,41 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
                 shape.lineTo(coords[i][0] - OFFSET_X, coords[i][1] - OFFSET_Y);
             }
             const geometry = new THREE.ShapeGeometry(shape);
-            let mapColor = props.type === 'path' ? 0xcbd5e1 : (props.type === 'empty' ? 0xe2e8f0 : 0xffffff);
+
+            // ✅ Floor-specific color logic
+            let mapColor;
+            if (props.type === 'path') {
+                mapColor = 0xcbd5e1;
+            } else if (props.type === 'empty') {
+                mapColor = floor === 'first-floor' ? 0xf1f5f9 : 0xe2e8f0;
+            } else if (floor === 'first-floor' && props.id.toLowerCase().includes('e-shop')) {
+                mapColor = 0xe2e8f0;
+            } else {
+                mapColor = 0xffffff;
+            }
+
             const material = new THREE.MeshBasicMaterial({
                 color: mapColor,
                 side: THREE.DoubleSide,
                 polygonOffset: true,
-                polygonOffsetFactor: 1,
+                polygonOffsetFactor: (floor === 'first-floor' && props.id === 'wall') ? 2 : 1,
                 polygonOffsetUnits: 1
             });
+
             const mesh = new THREE.Mesh(geometry, material);
             mesh.rotation.x = Math.PI / 2;
-            mesh.position.y = props.type === 'path' ? 0 : 2;
+
+            // ✅ Floor-specific positioning
+            if (floor === 'first-floor' && props.id === 'wall') {
+                mesh.position.y = -2;
+            } else if (floor === 'restaurant-floor' && props.id.includes('wall')) {
+                mesh.position.y = -2;
+            } else if (props.type === 'path') {
+                mesh.position.y = 0;
+            } else {
+                mesh.position.y = floor === 'restaurant-floor' ? 2 : (floor === 'first-floor' ? 1 : 2);
+            }
+
             mesh.userData = props;
 
             const edges = new THREE.EdgesGeometry(geometry);
@@ -387,7 +467,8 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
             addLabels(mesh, props, scene);
         };
 
-        fetch('/assets/maps/ground-floor.json')
+        // ✅ Dynamically load floor JSON
+        fetch(`/assets/maps/${floor}.json`)
             .then(res => res.json())
             .then(data => {
                 if (isUnmountingRef.current) return;
@@ -398,7 +479,6 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
                 setTimeout(() => {
                     if (!isUnmountingRef.current) {
                         labelRenderer.render(scene, camera);
-
                     }
                 }, 100);
             });
@@ -408,12 +488,11 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
 
             animationFrameRef.current = requestAnimationFrame(animate);
 
-            // 1. Pehle controls update karein (Camera movement calculate hogi)
             if (controlsRef.current) {
                 controlsRef.current.update();
             }
 
-            // 2. Route animation logic
+            // Route animation
             const activeRoute = scene.getObjectByName("active-route");
             if (activeRoute && activeRoute.material) {
                 const data = activeRoute.userData;
@@ -434,24 +513,17 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
                     }
                 }
             }
+
             cameraRef.current.updateMatrixWorld();
-
-            // 3. WebGL Renderer (Map/3D models)
             renderer.render(scene, cameraRef.current);
-
-            // 4. CSS2D Renderer (Labels) - Sirf EK baar call karein
-            // Isko last mein rakhne se jittering khatam ho jati hai kyunke 
-            // camera ki final position use hoti hai.
             labelRendererRef.current.render(scene, cameraRef.current);
-            // Camera matrix ko force update karein taake labels purani position na pakren
         };
 
         animate();
 
         return () => {
-            isUnmountingRef.current = true; // ✅ Mark as unmounting
+            isUnmountingRef.current = true;
 
-            // ✅ Cancel animation frame
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
             }
@@ -459,7 +531,6 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
             renderer.domElement.removeEventListener('click', handlePointer);
             renderer.domElement.removeEventListener('touchend', handlePointer);
 
-            // ✅ Remove route first
             const activeRoute = scene.getObjectByName("active-route");
             if (activeRoute) {
                 if (activeRoute.geometry) activeRoute.geometry.dispose();
@@ -472,13 +543,11 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
                 scene.remove(activeRoute);
             }
 
-            // ✅ Dispose texture
             if (circleTextureRef.current) {
                 circleTextureRef.current.dispose();
                 circleTextureRef.current = null;
             }
 
-            // ✅ Clean scene
             scene.traverse((object) => {
                 if (object.isMesh) {
                     if (object.geometry) object.geometry.dispose();
@@ -499,12 +568,21 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
                 container.innerHTML = "";
             }
         };
-    }, []);
+    }, [floor]); // ✅ Floor change hone par reload
 
     useEffect(() => {
         objectsRef.current.forEach(obj => {
             if (obj.userData && obj.material?.color) {
-                let baseColor = obj.userData.type === 'path' ? 0xcbd5e1 : (obj.userData.type === 'empty' ? 0xe2e8f0 : 0xffffff);
+                let baseColor;
+                if (obj.userData.type === 'path') {
+                    baseColor = 0xcbd5e1;
+                } else if (obj.userData.type === 'empty') {
+                    baseColor = floor === 'first-floor' ? 0xf1f5f9 : 0xe2e8f0;
+                } else if (floor === 'first-floor' && obj.userData.id.toLowerCase().includes('e-shop')) {
+                    baseColor = 0xe2e8f0;
+                } else {
+                    baseColor = 0xffffff;
+                }
                 const targetColor = obj.userData.id === selectedId ? 0xfee2e2 : baseColor;
                 obj.material.color.set(targetColor);
             }
@@ -513,7 +591,7 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
         const scene = sceneRef.current;
         const oldRoute = scene.getObjectByName("active-route");
 
-        if (showRoute && selectedId && NAVIGATION_DATA[selectedId]) {
+        if (showRoute && selectedId && NAVIGATION_DATA[floor]?.[selectedId]) {
             console.log("Drawing route for:", selectedId);
             drawDynamicRoute(scene, selectedId);
         } else {
@@ -529,7 +607,7 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
                 scene.remove(oldRoute);
             }
         }
-    }, [selectedId, showRoute]);
+    }, [selectedId, showRoute, floor]);
 
     const resetCamera = () => {
         if (cameraRef.current && controlsRef.current) {
@@ -551,4 +629,4 @@ const GroundFloorMap = ({ selectedId, onMapClick, showRoute }) => {
     );
 };
 
-export default GroundFloorMap;
+export default FloorMap;

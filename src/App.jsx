@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
-import GroundFloorMap from './components/GroundFloorMap';
-import FirstFloorMap from './components/FirstFloorMap';
-import RestaurantFloorMap from './components/RestaurantFloorMap';
+import FloorMap from './components/FloorMap';
 import './App.css';
 
 const App = () => {
@@ -10,7 +8,7 @@ const App = () => {
   const [currentTime, setCurrentTime] = useState("");
   const [activeFloor, setActiveFloor] = useState('ground-floor');
   const [allStores, setAllStores] = useState([]);
-  const [showRoute, setShowRoute] = useState(false); // Route dikhane ke liye state
+  const [showRoute, setShowRoute] = useState(false);
 
   // --- 1. Master Store List Loading ---
   useEffect(() => {
@@ -58,17 +56,14 @@ const App = () => {
   }, []);
 
   // --- 2. Handlers ---
-
-  // Sidebar ya Map click par kya hoga
- const handleStoreClick = (id) => { // 'id' parameter hai
+  const handleStoreClick = (id) => {
     if (!id) {
       setSelectedStoreId(null);
       setShowRoute(false);
       return;
     }
 
-    // Yahan check karein ke parameter name (id) aur find ke andar wala name same ho
-    const store = allStores.find(s => s.properties.id === id); 
+    const store = allStores.find(s => s.properties.id === id);
     
     if (store) {
       setActiveFloor(store.properties.floor);
@@ -79,7 +74,8 @@ const App = () => {
       setSelectedStoreId(id);
       setShowRoute(true);
     }
-};
+  };
+
   // Selected store ka data nikalna panel mein dikhane ke liye
   const selectedStoreData = allStores.find(s => s.properties.id === selectedStoreId);
 
@@ -104,33 +100,15 @@ const App = () => {
           ))}
         </div>
 
-        {/* --- 3D MAP RENDERER --- */}
+        {/* --- ✅ UNIFIED 3D MAP RENDERER --- */}
         <div className="canvas-container-wrapper" style={{ width: '100%', height: '100%' }}>
-          {activeFloor === 'ground-floor' && (
-            <GroundFloorMap
-              selectedId={selectedStoreId}
-              onMapClick={handleStoreClick}
-              showRoute={showRoute}
-            />
-          )}
-
-          {activeFloor === 'first-floor' && (
-            <FirstFloorMap
-              selectedId={selectedStoreId}
-              onMapClick={handleStoreClick}
-              showRoute={showRoute}
-            />
-          )}
-
-          {activeFloor === 'restaurant-floor' && (
-            typeof RestaurantFloorMap !== 'undefined' ?
-              <RestaurantFloorMap
-                selectedId={selectedStoreId}
-                onMapClick={handleStoreClick}
-                showRoute={showRoute}
-              /> :
-              <div className="coming-soon">Coming Soon</div>
-          )}
+          <FloorMap
+            key={activeFloor}
+            floor={activeFloor}
+            selectedId={selectedStoreId}
+            onMapClick={handleStoreClick}
+            showRoute={showRoute}
+          />
         </div>
 
         {/* --- RIGHT SIDE STORE PANEL --- */}
@@ -152,7 +130,19 @@ const App = () => {
 
             <div className="panel-body">
               <p className="description-text">
-                {selectedStoreData.properties.description || "Experience premium shopping at " + selectedStoreData.properties.name + ". Visit us on the " + activeFloor.replace('-', ' ') + "."}
+                {selectedStoreData.properties.description || (() => {
+                  const type = selectedStoreData.properties.type;
+                  const name = selectedStoreData.properties.name;
+                  const floor = activeFloor.replace('-', ' ');
+                  
+                  if (type === 'food') {
+                    return `Experience delicious dining at ${name}. Visit us on the ${floor}.`;
+                  } else if (type === 'fun') {
+                    return `Enjoy exciting entertainment at ${name}. Visit us on the ${floor}.`;
+                  } else {
+                    return `Experience premium shopping at ${name}. Visit us on the ${floor}.`;
+                  }
+                })()}
               </p>
             </div>
 
