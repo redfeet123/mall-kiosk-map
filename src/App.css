@@ -4,10 +4,11 @@
 }
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 * {
+    cursor: none !important;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
@@ -22,7 +23,10 @@ html {
     overflow: hidden;
     font-family: 'Berlin Sans FB Demi Bold', sans-serif;
     background: #ffffff;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
+
 
 .kiosk-wrapper {
     display: grid;
@@ -61,7 +65,7 @@ html {
     will-change: transform;
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
-    
+
     /* Important: translate override na ho, isliye transform property yahan na likhen */
 }
 
@@ -718,4 +722,3 @@ html {
     height: 100%;
     object-fit: contain;
 } */
-
