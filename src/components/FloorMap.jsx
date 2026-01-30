@@ -7,7 +7,32 @@ import Legend from './Legend';
 const OFFSET_X = 960;
 const OFFSET_Y = 540;
 
-// ✅ Floor-wise Navigation Data
+// // ✅ Floor-wise Navigation Data
+// const ENTRY_POINTS = {
+//     'ground-floor': {
+//         'kiosk': { x: 1349, y: 680 },
+//         'lift1': { x: 786, y: 377 },
+//         'stairs2': { x: 702, y: 378 },
+//         'lift2': { x: 1093, y: 373 },
+//         'stairs3': { x: 1179, y: 374 },
+//         'lift3': { x: 1545, y: 377 }
+//     },
+//     'first-floor': {
+//         'kiosk': { x: 1330, y: 463 },
+//         'lift1': { x: 806, y: 395 },
+//         'stairs2': { x: 727, y: 395 },
+//         'lift2': { x: 1121, y: 394 },
+//         'stairs3': { x: 1195, y: 391 },
+//     },
+//     'restaurant-floor': {
+//         'kiosk': { x: 932, y: 528 },
+//         'lift1': { x: 797, y: 404 },
+//         'stairs2': { x: 710, y: 401 },
+//         'lift2': { x: 1108, y: 400 },
+//         'stairs3': { x: 1190, y: 402 },
+//     },
+// }
+
 const NAVIGATION_DATA = {
     'ground-floor': {
         'hush_puppies': [
