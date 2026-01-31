@@ -6,7 +6,7 @@ const LandingScreen = ({ onStart }) => {
         <div className="landing-screen">
             <div className="landing-content">
                 <img 
-                    src="/public/assets/logos/default.png" 
+                    src="/assets/logos/default.png" 
                     alt="The North Walk"
                     className="landing-logo"
                 />
