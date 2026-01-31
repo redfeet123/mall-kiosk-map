@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import FloorMap from './components/FloorMap';
-import LandingScreen from './components/LandingScreen';
 import './App.css';
 
 const App = () => {
-  const [showLanding, setShowLanding] = useState(true);
   const [selectedStoreId, setSelectedStoreId] = useState(null);
   const [currentTime, setCurrentTime] = useState("");
   const [activeFloor, setActiveFloor] = useState('ground-floor');
   const [allStores, setAllStores] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
 
-  // ✅ Landing screen se map open karne ka handler
-  const handleStartWayfinder = () => {
-    setShowLanding(false);
-  };
-
+  // Scaling Logic for Kiosk Resolution
   useEffect(() => {
     const handleScaling = () => {
       const baseWidth = 1920; 
@@ -38,6 +32,7 @@ const App = () => {
     return () => window.removeEventListener('resize', handleScaling);
   }, []);
 
+  // Fetching Store Data & Timer
   useEffect(() => {
     const floors = ['ground-floor', 'first-floor', 'restaurant-floor'];
 
@@ -102,12 +97,6 @@ const App = () => {
 
   const selectedStoreData = allStores.find(s => s.properties.id === selectedStoreId);
 
-  // ✅ Agar landing screen dikha rahe hain toh sirf wahi return karo
-  if (showLanding) {
-    return <LandingScreen onStart={handleStartWayfinder} />;
-  }
-
-  // ✅ Landing screen close hone ke baad normal map UI
   return (
     <div className="kiosk-wrapper">
       <section className="map-section" style={{ position: 'relative', width: '100%', height: '100%' }}>
