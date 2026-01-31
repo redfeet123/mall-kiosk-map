@@ -418,7 +418,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             powerPreference: "high-performance"
         });
         renderer.setSize(width, height);
-        renderer.setPixelRatio(1);
+        renderer.setPixelRatio(window.devicePixelRatio);
         renderer.domElement.style.position = 'absolute';
         renderer.domElement.style.top = '0';
         renderer.domElement.style.left = '0';
@@ -429,7 +429,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         const labelRenderer = new CSS2DRenderer();
         labelRenderer.setSize(width, height);
         labelRenderer.domElement.style.position = 'absolute';
-        labelRenderer.domElement.style.zoom = 1;
         labelRenderer.domElement.style.top = '0';
         labelRenderer.domElement.style.left = '0';
         labelRenderer.domElement.style.width = '100%';

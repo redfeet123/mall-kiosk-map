@@ -16,8 +16,8 @@
     padding: 0;
 }
 html {
-    -moz-transform: scale(1.0);
-    -moz-transform-origin: 0 0;
+    /* -moz-transform: scale(1.0);
+    -moz-transform-origin: 0 0; */
     zoom: 1; /* Non-standard but works for scale forcing */
 }
 
