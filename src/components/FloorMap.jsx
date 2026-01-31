@@ -442,26 +442,26 @@ useEffect(() => {
         labelRendererRef.current = labelRenderer;
 
         // ✅ Corrected Resize Handler inside useEffect
-        const handleResize = () => {
-            if (!container || isUnmountingRef.current) return;
+ const handleResize = () => {
+        if (!container || isUnmountingRef.current) return;
 
-            const newWidth = container.clientWidth;
-            const newHeight = container.clientHeight;
-            const newAspect = newWidth / newHeight;
+        const newWidth = container.clientWidth;
+        const newHeight = container.clientHeight;
+        const newAspect = newWidth / newHeight;
 
-            // Camera frustum update
-            camera.left = -d * newAspect;
-            camera.right = d * newAspect;
-            camera.top = d;
-            camera.bottom = -d;
-            camera.updateProjectionMatrix();
+        // Camera frustum update (Map stretch nahi hoga)
+        camera.left = -d * newAspect;
+        camera.right = d * newAspect;
+        camera.top = d;
+        camera.bottom = -d;
+        camera.updateProjectionMatrix();
 
-            // Renderers update
-            renderer.setSize(newWidth, newHeight);
-            labelRenderer.setSize(newWidth, newHeight);
-        };
+        // Dono renderers ko exact same size dein taake logos alignment na chorein
+        renderer.setSize(newWidth, newHeight);
+        labelRenderer.setSize(newWidth, newHeight);
+    };
 
-        window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
