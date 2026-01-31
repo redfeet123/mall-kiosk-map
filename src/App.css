@@ -741,3 +741,162 @@ html {
     height: 100%;
     object-fit: contain;
 } */
+
+.landing-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #3A6A95;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    cursor: pointer;
+}
+
+.landing-content {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+    max-width: 90%;
+}
+
+.landing-logo {
+    max-width: 500px;
+    width: 90%;
+    margin-bottom: 50px;
+    filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4));
+    animation: float 4s ease-in-out infinite;
+}
+
+.landing-title {
+    color: white;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.landing-subtitle {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.5rem;
+    margin-bottom: 60px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.wayfinder-button {
+    background: white;
+    color: #1e3a8a;
+    border: none;
+    padding: 25px 60px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-radius: 60px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+
+.wayfinder-button:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.wayfinder-button:active {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.button-icon {
+    font-size: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.tap-instruction {
+    margin-top: 50px;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.2rem;
+    font-weight: 300;
+    animation: blink 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-25px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Touch screen responsive */
+@media (max-width: 768px) {
+    .landing-title {
+        font-size: 2.5rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .wayfinder-button {
+        padding: 30px 70px;
+        font-size: 2rem;
+    }
+    
+    .landing-logo {
+        max-width: 350px;
+    }
+}
+
+/* Kiosk large screens */
+@media (min-width: 1920px) {
+    .landing-title {
+        font-size: 4.5rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 2rem;
+    }
+    
+    .wayfinder-button {
+        padding: 35px 80px;
+        font-size: 2.2rem;
+    }
+}

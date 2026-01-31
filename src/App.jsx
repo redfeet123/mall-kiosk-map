@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import FloorMap from './components/FloorMap';
+import LandingScreen from './components/LandingScreen';
 import './App.css';
 
 const App = () => {
+  const [showLanding, setShowLanding] = useState(true);
   const [selectedStoreId, setSelectedStoreId] = useState(null);
   const [currentTime, setCurrentTime] = useState("");
   const [activeFloor, setActiveFloor] = useState('ground-floor');
   const [allStores, setAllStores] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
 
-  useEffect(() => {
-  const handleScaling = () => {
-    // Laptop ki standard width (jis par aapka map sahi chal raha hai)
-    const baseWidth = 1920; 
-    const currentWidth = window.innerWidth;
-    
-    // Scale factor calculate karein
-    const scale = currentWidth / baseWidth;
-
-    // Poore wrapper ko scale karein
-    const wrapper = document.querySelector('.kiosk-wrapper');
-    if (wrapper) {
-      wrapper.style.transform = `scale(${scale})`;
-      wrapper.style.transformOrigin = 'top left';
-      wrapper.style.width = `${baseWidth}px`;
-      wrapper.style.height = `${window.innerHeight / scale}px`;
-    }
+  // ✅ Landing screen se map open karne ka handler
+  const handleStartWayfinder = () => {
+    setShowLanding(false);
   };
 
-  window.addEventListener('resize', handleScaling);
-  handleScaling(); // Pehli baar run karne ke liye
+  useEffect(() => {
+    const handleScaling = () => {
+      const baseWidth = 1920; 
+      const currentWidth = window.innerWidth;
+      const scale = currentWidth / baseWidth;
 
-  return () => window.removeEventListener('resize', handleScaling);
-}, []);
+      const wrapper = document.querySelector('.kiosk-wrapper');
+      if (wrapper) {
+        wrapper.style.transform = `scale(${scale})`;
+        wrapper.style.transformOrigin = 'top left';
+        wrapper.style.width = `${baseWidth}px`;
+        wrapper.style.height = `${window.innerHeight / scale}px`;
+      }
+    };
 
-  // --- 1. Master Store List Loading ---
+    window.addEventListener('resize', handleScaling);
+    handleScaling();
+
+    return () => window.removeEventListener('resize', handleScaling);
+  }, []);
+
   useEffect(() => {
     const floors = ['ground-floor', 'first-floor', 'restaurant-floor'];
 
@@ -61,7 +63,6 @@ const App = () => {
           combined = [...combined, ...features];
         });
 
-        // Unique Stores Logic (Duplicates khatam karne ke liye)
         const uniqueStoresMap = new Map();
         combined.forEach(store => {
           const id = store.properties.id;
@@ -80,7 +81,6 @@ const App = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // --- 2. Handlers ---
   const handleStoreClick = (id) => {
     if (!id) {
       setSelectedStoreId(null);
@@ -95,20 +95,23 @@ const App = () => {
       setSelectedStoreId(id);
       setShowRoute(false);
     } else {
-      // Elevator, Restroom, Stairs sab yahan handle honge
       setSelectedStoreId(id);
       setShowRoute(true);
     }
   };
 
-  // Selected store ka data nikalna panel mein dikhane ke liye
   const selectedStoreData = allStores.find(s => s.properties.id === selectedStoreId);
 
+  // ✅ Agar landing screen dikha rahe hain toh sirf wahi return karo
+  if (showLanding) {
+    return <LandingScreen onStart={handleStartWayfinder} />;
+  }
+
+  // ✅ Landing screen close hone ke baad normal map UI
   return (
     <div className="kiosk-wrapper">
       <section className="map-section" style={{ position: 'relative', width: '100%', height: '100%' }}>
 
-        {/* Floor Switcher UI */}
         <div className="floor-switcher">
           {['restaurant-floor', 'first-floor', 'ground-floor'].map(f => (
             <button
@@ -125,7 +128,6 @@ const App = () => {
           ))}
         </div>
 
-        {/* --- ✅ UNIFIED 3D MAP RENDERER --- */}
         <div className="canvas-container-wrapper" style={{ width: '100%', height: '100%' }}>
           <FloorMap
             key={activeFloor}
@@ -136,7 +138,6 @@ const App = () => {
           />
         </div>
 
-        {/* --- RIGHT SIDE STORE PANEL --- */}
         {selectedStoreId && selectedStoreData && (
           <div className="store-details-panel">
             <button className="close-panel-btn" onClick={() => { setSelectedStoreId(null); setShowRoute(false); }}>×</button>
@@ -188,7 +189,6 @@ const App = () => {
         )}
       </section>
 
-      {/* Sidebar Component */}
       <Sidebar stores={allStores} time={currentTime} onStoreSelect={handleStoreClick} />
     </div>
   );
