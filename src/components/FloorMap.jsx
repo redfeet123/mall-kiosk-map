@@ -396,32 +396,34 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         }
     };
 
-useEffect(() => {
+    useEffect(() => {
         isUnmountingRef.current = false;
         const container = mountRef.current;
         const scene = sceneRef.current;
-        
-        // Initial dimensions
+
+        // 1. Initial dimensions refresh ke waqt current container se lein
         let width = container.clientWidth;
         let height = container.clientHeight;
 
         scene.background = new THREE.Color(0xffffff);
 
-        const aspect = width / height;
+        // 2. Camera Setup
         const d = 450;
+        const aspect = width / height;
         const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 5000);
         camera.position.set(800, 500, 800);
         camera.lookAt(0, 0, 0);
         cameraRef.current = camera;
 
+        // 3. WebGL Renderer
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
             precision: "highp",
             powerPreference: "high-performance"
         });
         renderer.setSize(width, height);
-        renderer.setPixelRatio(1); // Important for TV
-        
+        renderer.setPixelRatio(1); // TV pixel density bypass karne ke liye
+
         renderer.domElement.style.position = 'absolute';
         renderer.domElement.style.top = '0';
         renderer.domElement.style.left = '0';
@@ -429,6 +431,7 @@ useEffect(() => {
         renderer.domElement.style.height = '100%';
         container.appendChild(renderer.domElement);
 
+        // 4. CSS2D Renderer (Logos ke liye)
         const labelRenderer = new CSS2DRenderer();
         labelRenderer.setSize(width, height);
         labelRenderer.domElement.style.position = 'absolute';
@@ -441,28 +444,36 @@ useEffect(() => {
         container.appendChild(labelRenderer.domElement);
         labelRendererRef.current = labelRenderer;
 
-        // ✅ Corrected Resize Handler inside useEffect
- const handleResize = () => {
-        if (!container || isUnmountingRef.current) return;
+        // 5. ✅ Master Resize Handler (Refresh aur Screen change dono ke liye)
+        const handleResize = () => {
+            if (!container || isUnmountingRef.current) return;
 
-        const newWidth = container.clientWidth;
-        const newHeight = container.clientHeight;
-        const newAspect = newWidth / newHeight;
+            // Current size dobara nikalna zaroori hai
+            const newWidth = container.clientWidth;
+            const newHeight = container.clientHeight;
 
-        // Camera frustum update (Map stretch nahi hoga)
-        camera.left = -d * newAspect;
-        camera.right = d * newAspect;
-        camera.top = d;
-        camera.bottom = -d;
-        camera.updateProjectionMatrix();
+            // Agar container size zero ho (kabhi kabhi mount pe hota hai), toh skip karein
+            if (newWidth === 0 || newHeight === 0) return;
 
-        // Dono renderers ko exact same size dein taake logos alignment na chorein
-        renderer.setSize(newWidth, newHeight);
-        labelRenderer.setSize(newWidth, newHeight);
-    };
+            const newAspect = newWidth / newHeight;
 
-    window.addEventListener('resize', handleResize);
+            // Camera frustum update (Stretch rokne ke liye)
+            camera.left = -d * newAspect;
+            camera.right = d * newAspect;
+            camera.top = d;
+            camera.bottom = -d;
+            camera.updateProjectionMatrix();
 
+            // Dono renderers ko exact same size dein taake logos alignment na chorein
+            renderer.setSize(newWidth, newHeight);
+            labelRenderer.setSize(newWidth, newHeight);
+        };
+
+        // 🚀 Refresh fix: Mount hote hi foran call karein
+        // Is se F11 ke bagair bhi layout set ho jayega
+        setTimeout(handleResize, 100);
+
+        window.addEventListener('resize', handleResize);
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.15;
