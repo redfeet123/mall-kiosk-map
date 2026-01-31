@@ -43,6 +43,7 @@ html {
     position: absolute; /* Ye line zaroori hai scaling ke liye */
     top: 0;
     left: 0;
+    overflow: hidden;
 }
 /* --- Map Area --- */
 .map-section {
@@ -197,7 +198,9 @@ html {
     border-left: 2px solid #e2e8f0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 140vh;
+    max-height: 140vh;
+    overflow: hidden;
 }
 
 .directory-header {
@@ -223,12 +226,13 @@ html {
     text-align: center;
     background-color: WHITE;
 }
-
 .store-list {
-    flex: 1 0 auto;
-    overflow-y: auto;
+    /* Screen ki poori height minus header ki height */
+    /* height: calc(100vh - 200px) !important;  */
+    overflow-y: auto !important; /* Scroll bar ko force karein */
     padding: 20px;
     background: #f1f5f9;
+    -webkit-overflow-scrolling: touch; /* Touch screen ke liye smooth scrolling */
 }
 
 .store-item {
