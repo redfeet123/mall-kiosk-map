@@ -4,15 +4,12 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
     // 1. Filter: Retail, Food, Fun, aur Banking types ko nikaalna
-    // Hum sirf unhe dikhayenge jin ka valid name ho
     const allBrandsRaw = stores.filter(s =>
         (s.properties.type === 'retail' || s.properties.type === 'food' || s.properties.type === 'fun' || s.properties.type === 'banking') &&
         s.properties.name
     );
 
-    // 2. Unique List Logic: 
-    // Agar ek hi brand ke multiple units hain (e.g. Peak-A-Bear-1, Peak-A-Bear-2), 
-    // toh list mein sirf ek dafa dikhayein.
+    // 2. Unique List Logic
     const uniqueBrands = [];
     const seenNames = new Set();
 
@@ -30,9 +27,24 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
     );
 
     // 4. Logo File Name Cleaner
-    // Agar ID 'hush-puppies-1' hai toh '-1' hata kar 'hush-puppies.png' dhoondega
     const getLogoName = (id) => {
         return id.replace(/-[0-9]$/, '');
+    };
+
+    // ✨ NAYA: Enter key handler
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            
+            // Agar filtered results mein kuch hai toh pehla result select karo
+            if (filtered.length > 0) {
+                const firstStore = filtered[0];
+                onStoreSelect(firstStore.properties.id);
+                
+                // Optional: Search clear bhi kar do selection ke baad
+                // setSearchQuery("");
+            }
+        }
     };
 
     return (
@@ -48,6 +60,7 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
                         placeholder="Search for brands..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}  // ✨ NAYA LINE
                         className="search-input"
                         autoComplete="off"
                     />
