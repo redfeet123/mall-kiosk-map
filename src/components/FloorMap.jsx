@@ -422,7 +422,10 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             powerPreference: "high-performance",
             failIfMajorPerformanceCaveat: false
         });
-        renderer.setSize(width, height);
+        const initialWidth = container.clientWidth || window.innerWidth;
+        const initialHeight = container.clientHeight || window.innerHeight;
+
+        renderer.setSize(initialWidth, initialHeight);
         renderer.setPixelRatio(1); // TV pixel density bypass karne ke liye
 
         renderer.domElement.style.position = 'absolute';
