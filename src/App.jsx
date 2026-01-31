@@ -10,6 +10,31 @@ const App = () => {
   const [allStores, setAllStores] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
 
+  useEffect(() => {
+  const handleScaling = () => {
+    // Laptop ki standard width (jis par aapka map sahi chal raha hai)
+    const baseWidth = 1920; 
+    const currentWidth = window.innerWidth;
+    
+    // Scale factor calculate karein
+    const scale = currentWidth / baseWidth;
+
+    // Poore wrapper ko scale karein
+    const wrapper = document.querySelector('.kiosk-wrapper');
+    if (wrapper) {
+      wrapper.style.transform = `scale(${scale})`;
+      wrapper.style.transformOrigin = 'top left';
+      wrapper.style.width = `${baseWidth}px`;
+      wrapper.style.height = `${window.innerHeight / scale}px`;
+    }
+  };
+
+  window.addEventListener('resize', handleScaling);
+  handleScaling(); // Pehli baar run karne ke liye
+
+  return () => window.removeEventListener('resize', handleScaling);
+}, []);
+
   // --- 1. Master Store List Loading ---
   useEffect(() => {
     const floors = ['ground-floor', 'first-floor', 'restaurant-floor'];

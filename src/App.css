@@ -8,12 +8,17 @@
 }
 
 * {
-    cursor: none !important;
+    /* cursor: none !important; */
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     margin: 0;
     padding: 0;
+}
+html {
+    -moz-transform: scale(1.0);
+    -moz-transform-origin: 0 0;
+    zoom: 1; /* Non-standard but works for scale forcing */
 }
 
 body,
@@ -25,16 +30,20 @@ html {
     background: #ffffff;
     user-select: none;
     -webkit-touch-callout: none;
+    max-height: 100vh;
+    min-height: 100vh;
 }
 
 
 .kiosk-wrapper {
     display: grid;
-    grid-template-columns: 1fr 450px;
+    grid-template-columns: 1fr 450px; 
     height: 100vh;
     width: 100vw;
+    position: absolute; /* Ye line zaroori hai scaling ke liye */
+    top: 0;
+    left: 0;
 }
-
 /* --- Map Area --- */
 .map-section {
     background: #ffffff;
@@ -160,7 +169,7 @@ html {
 }
 
 .legend-item span {
-    font-size: 18px;
+    font-size: 15px;
     color: #334155;
 }
 
@@ -182,7 +191,7 @@ html {
     border-left: 2px solid #e2e8f0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 140vh;
 }
 
 .directory-header {
