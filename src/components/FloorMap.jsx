@@ -396,12 +396,14 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         }
     };
 
-    useEffect(() => {
+useEffect(() => {
         isUnmountingRef.current = false;
         const container = mountRef.current;
         const scene = sceneRef.current;
-        const width = container.clientWidth;
-        const height = container.clientHeight;
+        
+        // Initial dimensions
+        let width = container.clientWidth;
+        let height = container.clientHeight;
 
         scene.background = new THREE.Color(0xffffff);
 
@@ -418,7 +420,8 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             powerPreference: "high-performance"
         });
         renderer.setSize(width, height);
-        renderer.setPixelRatio(1);
+        renderer.setPixelRatio(1); // Important for TV
+        
         renderer.domElement.style.position = 'absolute';
         renderer.domElement.style.top = '0';
         renderer.domElement.style.left = '0';
@@ -437,6 +440,28 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         labelRenderer.domElement.classList.add('css2d-overlay');
         container.appendChild(labelRenderer.domElement);
         labelRendererRef.current = labelRenderer;
+
+        // ✅ Corrected Resize Handler inside useEffect
+        const handleResize = () => {
+            if (!container || isUnmountingRef.current) return;
+
+            const newWidth = container.clientWidth;
+            const newHeight = container.clientHeight;
+            const newAspect = newWidth / newHeight;
+
+            // Camera frustum update
+            camera.left = -d * newAspect;
+            camera.right = d * newAspect;
+            camera.top = d;
+            camera.bottom = -d;
+            camera.updateProjectionMatrix();
+
+            // Renderers update
+            renderer.setSize(newWidth, newHeight);
+            labelRenderer.setSize(newWidth, newHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
@@ -618,7 +643,8 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
 
         return () => {
             isUnmountingRef.current = true;
-
+            window.removeEventListener('resize', handleResize);
+            renderer.domElement.removeEventListener('click', handlePointer);
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
             }
