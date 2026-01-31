@@ -418,8 +418,9 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         // 3. WebGL Renderer
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
-            precision: "highp",
-            powerPreference: "high-performance"
+            precision: "lowp",
+            powerPreference: "high-performance",
+            failIfMajorPerformanceCaveat: false
         });
         renderer.setSize(width, height);
         renderer.setPixelRatio(1); // TV pixel density bypass karne ke liye
