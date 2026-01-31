@@ -4,75 +4,17 @@ import FloorMap from './components/FloorMap';
 import './App.css';
 
 const App = () => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
   const [selectedStoreId, setSelectedStoreId] = useState(null);
   const [currentTime, setCurrentTime] = useState("");
   const [activeFloor, setActiveFloor] = useState('ground-floor');
   const [allStores, setAllStores] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
 
-  // ✅ FULLSCREEN TRIGGER
-  useEffect(() => {
-    const requestFullscreen = () => {
-      const elem = document.documentElement;
-      
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(err => {
-          console.log("Fullscreen request failed:", err);
-        });
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-      } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-      }
-    };
-
-    // Pehli click pe fullscreen trigger karo
-    const handleFirstClick = () => {
-      if (!isFullscreen) {
-        requestFullscreen();
-        setIsFullscreen(true);
-        // Event listener remove karo taake baar baar trigger na ho
-        document.removeEventListener('click', handleFirstClick);
-        document.removeEventListener('touchstart', handleFirstClick);
-      }
-    };
-
-    // Fullscreen change listener
-    const handleFullscreenChange = () => {
-      if (!document.fullscreenElement && 
-          !document.webkitFullscreenElement && 
-          !document.mozFullScreenElement && 
-          !document.msFullscreenElement) {
-        setIsFullscreen(false);
-        // Agar fullscreen se exit ho gaye toh wapas enter karo
-        setTimeout(requestFullscreen, 500);
-      } else {
-        setIsFullscreen(true);
-      }
-    };
-
-    // Pehli interaction pe fullscreen
-    document.addEventListener('click', handleFirstClick);
-    document.addEventListener('touchstart', handleFirstClick);
-
-    // Fullscreen state track karo
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
-
-    return () => {
-      document.removeEventListener('click', handleFirstClick);
-      document.removeEventListener('touchstart', handleFirstClick);
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
-    };
-  }, [isFullscreen]);
+  // ✅ Landing screen se map open karne ka handler
+  const handleStartWayfinder = () => {
+    setShowLanding(false);
+  };
 
   useEffect(() => {
     const handleScaling = () => {
@@ -100,6 +42,7 @@ const App = () => {
     return () => window.removeEventListener('resize', handleScaling);
   }, []);
 
+  // Fetching Store Data & Timer
   useEffect(() => {
     const floors = ['ground-floor', 'first-floor', 'restaurant-floor'];
 
