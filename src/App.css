@@ -152,11 +152,11 @@ html {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    width: 280px;
+    width: 250px;            /* Subtly down from 280px */
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(8px);
-    padding: 20px;
-    border-radius: 15px;
+    padding: 16px;           /* Subtly down from 20px */
+    border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     z-index: 10;
     pointer-events: none;
@@ -165,21 +165,20 @@ html {
 .legend-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
+    gap: 10px;               /* Slightly tighter than 12px */
+    margin-bottom: 6px;      /* Slightly tighter than 8px */
 }
 
 .legend-icon {
-    width: 35px;
-    height: 35px;
+    width: 28px;            /* Not too small, down from 35px */
+    height: 28px;           /* Not too small, down from 35px */
     object-fit: contain;
 }
 
 .legend-item span {
-    font-size: 15px;
+    font-size: 14px;        /* Only 1px smaller than before */
     color: #334155;
 }
-
 .map-overlay-title {
     position: absolute;
     bottom: 40px;
