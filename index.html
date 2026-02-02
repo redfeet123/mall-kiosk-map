@@ -3,30 +3,335 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/assets/logos/default.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- ✅ Maximum Viewport Coverage -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces2015%2Ces2016%2Ces2017"></script>
-    <title>north-walk-kiosk</title>
+    <title>The North Walk - Interactive Wayfinder</title>
+
+    <style>
+      /* ✅ GLOBAL RESET - Maximum screen coverage */
+      * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        touch-action: pan-x pan-y;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* ✅ Safe area insets for notched devices */
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+
+      #root {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+      }
+
+      img {
+        -webkit-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
+      }
+
+      button, a, input, .wayfinder-button, .store-item, .shop-label-wrapper {
+        pointer-events: auto !important;
+        touch-action: manipulation;
+      }
+
+      /* ✅ Hide scrollbars completely */
+      ::-webkit-scrollbar {
+        display: none;
+        width: 0 !important;
+        height: 0 !important;
+      }
+
+      * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
 
     <script>
-      // Ctrl + Plus, Minus aur Mouse Wheel zoom ko block karne ke liye
-      document.addEventListener('keydown', function(event) {
-        if ((event.ctrlKey === true || event.metaKey === true) && 
-            (event.which === 61 || event.which === 107 || 
-             event.which === 173 || event.which === 109 || 
-             event.which === 187 || event.which === 189)) {
-          event.preventDefault();
-        }
-      }, false);
+      // ✅ ULTIMATE FULLSCREEN HANDLER - Works on all Android versions
+      (function() {
+        'use strict';
 
-      document.addEventListener('wheel', function(event) {
-        if (event.ctrlKey === true) {
-          event.preventDefault();
+        let isFullscreenAttempted = false;
+        let addressBarHidden = false;
+
+        // Hide address bar (Android Chrome trick)
+        function hideAddressBar() {
+          if (addressBarHidden) return;
+          
+          // Scroll to hide address bar
+          window.scrollTo(0, 1);
+          document.body.scrollTop = 0;
+          
+          // Force layout
+          if (document.documentElement) {
+            document.documentElement.style.height = window.innerHeight + 'px';
+          }
+          
+          addressBarHidden = true;
         }
-      }, { passive: false });
+
+        // Request fullscreen with all browser prefixes
+        function requestFullscreen() {
+          if (isFullscreenAttempted) return;
+          isFullscreenAttempted = true;
+
+          const elem = document.documentElement;
+          
+          try {
+            if (elem.requestFullscreen) {
+              elem.requestFullscreen().catch(err => console.log('Fullscreen request failed:', err));
+            } else if (elem.webkitRequestFullscreen) {
+              elem.webkitRequestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+              elem.mozRequestFullScreen();
+            } else if (elem.msRequestFullscreen) {
+              elem.msRequestFullscreen();
+            }
+          } catch (err) {
+            console.log('Fullscreen not supported:', err);
+          }
+        }
+
+        // Check if fullscreen is active
+        function isFullscreen() {
+          return !!(document.fullscreenElement || 
+                   document.webkitFullscreenElement || 
+                   document.mozFullScreenElement ||
+                   document.msFullscreenElement);
+        }
+
+        // Auto re-enter fullscreen if exited
+        function handleFullscreenChange() {
+          if (!isFullscreen() && isFullscreenAttempted) {
+            // Wait a bit before re-requesting
+            setTimeout(() => {
+              isFullscreenAttempted = false;
+              requestFullscreen();
+            }, 500);
+          }
+        }
+
+        // Orientation lock (landscape)
+        function lockOrientation() {
+          try {
+            if (screen.orientation && screen.orientation.lock) {
+              screen.orientation.lock('landscape').catch(err => {
+                console.log('Orientation lock failed:', err);
+              });
+            } else if (screen.lockOrientation) {
+              screen.lockOrientation('landscape');
+            } else if (screen.mozLockOrientation) {
+              screen.mozLockOrientation('landscape');
+            } else if (screen.msLockOrientation) {
+              screen.msLockOrientation('landscape');
+            }
+          } catch (err) {
+            console.log('Orientation lock not supported:', err);
+          }
+        }
+
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+          // Hide address bar immediately
+          hideAddressBar();
+          
+          // Try orientation lock
+          lockOrientation();
+
+          // First user interaction triggers fullscreen
+          const triggerFullscreen = function() {
+            requestFullscreen();
+            hideAddressBar();
+            
+            // Remove listeners after first trigger
+            document.removeEventListener('click', triggerFullscreen);
+            document.removeEventListener('touchstart', triggerFullscreen);
+            document.removeEventListener('touchend', triggerFullscreen);
+          };
+
+          // Multiple event listeners for maximum compatibility
+          document.addEventListener('click', triggerFullscreen, { once: true });
+          document.addEventListener('touchstart', triggerFullscreen, { once: true });
+          document.addEventListener('touchend', triggerFullscreen, { once: true });
+
+          // Fullscreen change listeners
+          document.addEventListener('fullscreenchange', handleFullscreenChange);
+          document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+          document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+          document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+          // Re-hide address bar on various events
+          window.addEventListener('load', hideAddressBar);
+          window.addEventListener('resize', hideAddressBar);
+          window.addEventListener('orientationchange', function() {
+            setTimeout(hideAddressBar, 100);
+            setTimeout(lockOrientation, 200);
+          });
+          window.addEventListener('scroll', hideAddressBar);
+
+          // Prevent context menu
+          document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+          });
+
+          // Keep screen awake (experimental)
+          if ('wakeLock' in navigator) {
+            let wakeLock = null;
+            const requestWakeLock = async () => {
+              try {
+                wakeLock = await navigator.wakeLock.request('screen');
+              } catch (err) {
+                console.log('Wake lock failed:', err);
+              }
+            };
+            requestWakeLock();
+            
+            document.addEventListener('visibilitychange', async () => {
+              if (wakeLock !== null && document.visibilityState === 'visible') {
+                await requestWakeLock();
+              }
+            });
+          }
+        });
+
+        // ✅ KEYBOARD CONTROLS BLOCK
+        document.addEventListener('keydown', function(event) {
+          // Block zoom shortcuts
+          if ((event.ctrlKey || event.metaKey) && 
+              (event.which === 61 || event.which === 107 || 
+               event.which === 173 || event.which === 109 || 
+               event.which === 187 || event.which === 189)) {
+            event.preventDefault();
+          }
+          
+          // Block F11 (let browser handle it naturally)
+          // if (event.key === 'F11') {
+          //   event.preventDefault();
+          // }
+          
+          // Block refresh
+          if (event.key === 'F5' || 
+              ((event.ctrlKey || event.metaKey) && event.key === 'r')) {
+            event.preventDefault();
+          }
+        }, false);
+
+        // ✅ MOUSE WHEEL ZOOM BLOCK
+        document.addEventListener('wheel', function(event) {
+          if (event.ctrlKey || event.metaKey) {
+            event.preventDefault();
+          }
+        }, { passive: false });
+
+        // ✅ TOUCH GESTURES BLOCK
+        document.addEventListener('touchstart', function(event) {
+          if (event.touches.length > 1) {
+            event.preventDefault();
+          }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', function(event) {
+          if (event.scale && event.scale !== 1) {
+            event.preventDefault();
+          }
+        }, { passive: false });
+
+        // ✅ DOUBLE-TAP ZOOM BLOCK
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+          const now = (new Date()).getTime();
+          if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        }, false);
+
+        // ✅ DRAG BLOCK
+        document.addEventListener('dragstart', function(event) {
+          event.preventDefault();
+          return false;
+        }, false);
+
+      })();
     </script>
   </head>
   <body>
+    <!-- ✅ Tap instruction overlay -->
+    <div id="fullscreen-prompt" style="
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999999;
+      background: rgba(0,0,0,0.85);
+      color: white;
+      padding: 40px 60px;
+      border-radius: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      pointer-events: none;
+      font-family: Arial, sans-serif;
+      display: none;
+    ">
+      👆 Tap anywhere to optimize display
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <script>
+      // Show prompt briefly on load
+      setTimeout(function() {
+        const prompt = document.getElementById('fullscreen-prompt');
+        if (prompt) {
+          prompt.style.display = 'block';
+          setTimeout(function() {
+            prompt.style.display = 'none';
+          }, 3000);
+        }
+      }, 500);
+    </script>
   </body>
 </html>
