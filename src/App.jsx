@@ -4,93 +4,25 @@ import FloorMap from './components/FloorMap';
 import './App.css';
 
 const App = () => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedStoreId, setSelectedStoreId] = useState(null);
   const [currentTime, setCurrentTime] = useState("");
   const [activeFloor, setActiveFloor] = useState('ground-floor');
   const [allStores, setAllStores] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
 
-  // ✅ FULLSCREEN TRIGGER
-  useEffect(() => {
-    const requestFullscreen = () => {
-      const elem = document.documentElement;
-      
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(err => {
-          console.log("Fullscreen request failed:", err);
-        });
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-      } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-      }
-    };
-
-    // Pehli click pe fullscreen trigger karo
-    const handleFirstClick = () => {
-      if (!isFullscreen) {
-        requestFullscreen();
-        setIsFullscreen(true);
-        // Event listener remove karo taake baar baar trigger na ho
-        document.removeEventListener('click', handleFirstClick);
-        document.removeEventListener('touchstart', handleFirstClick);
-      }
-    };
-
-    // Fullscreen change listener
-    const handleFullscreenChange = () => {
-      if (!document.fullscreenElement && 
-          !document.webkitFullscreenElement && 
-          !document.mozFullScreenElement && 
-          !document.msFullscreenElement) {
-        setIsFullscreen(false);
-        // Agar fullscreen se exit ho gaye toh wapas enter karo
-        setTimeout(requestFullscreen, 500);
-      } else {
-        setIsFullscreen(true);
-      }
-    };
-
-    // Pehli interaction pe fullscreen
-    document.addEventListener('click', handleFirstClick);
-    document.addEventListener('touchstart', handleFirstClick);
-
-    // Fullscreen state track karo
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
-
-    return () => {
-      document.removeEventListener('click', handleFirstClick);
-      document.removeEventListener('touchstart', handleFirstClick);
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
-    };
-  }, [isFullscreen]);
-
+  // Scaling Logic for Kiosk Resolution
   useEffect(() => {
     const handleScaling = () => {
       const baseWidth = 1920; 
-      const baseHeight = 1080;
       const currentWidth = window.innerWidth;
-      const currentHeight = window.innerHeight;
-      
-      const scaleX = currentWidth / baseWidth;
-      const scaleY = currentHeight / baseHeight;
-      const scale = Math.min(scaleX, scaleY);
+      const scale = currentWidth / baseWidth;
 
       const wrapper = document.querySelector('.kiosk-wrapper');
       if (wrapper) {
         wrapper.style.transform = `scale(${scale})`;
         wrapper.style.transformOrigin = 'top left';
         wrapper.style.width = `${baseWidth}px`;
-        wrapper.style.height = `${baseHeight}px`;
+        wrapper.style.height = `${window.innerHeight / scale}px`;
       }
     };
 
@@ -100,6 +32,7 @@ const App = () => {
     return () => window.removeEventListener('resize', handleScaling);
   }, []);
 
+  // Fetching Store Data & Timer
   useEffect(() => {
     const floors = ['ground-floor', 'first-floor', 'restaurant-floor'];
 
@@ -140,7 +73,6 @@ const App = () => {
     const timer = setInterval(() => {
       setCurrentTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
     }, 1000);
-    
     return () => clearInterval(timer);
   }, []);
 
@@ -167,27 +99,6 @@ const App = () => {
 
   return (
     <div className="kiosk-wrapper">
-      {/* ✅ FULLSCREEN PROMPT - Pehli load pe dikhai dega */}
-      {!isFullscreen && (
-        <div style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          zIndex: 99999,
-          background: 'rgba(0,0,0,0.8)',
-          color: 'white',
-          padding: '30px 50px',
-          borderRadius: '15px',
-          fontSize: '24px',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          pointerEvents: 'none'
-        }}>
-          👆 Tap anywhere to enter fullscreen
-        </div>
-      )}
-
       <section className="map-section" style={{ position: 'relative', width: '100%', height: '100%' }}>
 
         <div className="floor-switcher">
