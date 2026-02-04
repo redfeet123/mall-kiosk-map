@@ -7,112 +7,67 @@ import Legend from './Legend';
 const OFFSET_X = 960;
 const OFFSET_Y = 540;
 
-// // ✅ Floor-wise Navigation Data
-// const ENTRY_POINTS = {
-//     'ground-floor': {
-//         'kiosk': { x: 1349, y: 680 },
-//         'lift1': { x: 786, y: 377 },
-//         'stairs2': { x: 702, y: 378 },
-//         'lift2': { x: 1093, y: 373 },
-//         'stairs3': { x: 1179, y: 374 },
-//         'lift3': { x: 1545, y: 377 }
-//     },
-//     'first-floor': {
-//         'kiosk': { x: 1330, y: 463 },
-//         'lift1': { x: 806, y: 395 },
-//         'stairs2': { x: 727, y: 395 },
-//         'lift2': { x: 1121, y: 394 },
-//         'stairs3': { x: 1195, y: 391 },
-//     },
-//     'restaurant-floor': {
-//         'kiosk': { x: 932, y: 528 },
-//         'lift1': { x: 797, y: 404 },
-//         'stairs2': { x: 710, y: 401 },
-//         'lift2': { x: 1108, y: 400 },
-//         'stairs3': { x: 1190, y: 402 },
-//     },
-// }
-
 const NAVIGATION_DATA = {
     'ground-floor': {
         'hush_puppies': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 1019, y: 725 },
-            // { x: 1016, y: 703 }
         ],
         'sketchers': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 659, y: 722 },
-            // { x: 657, y: 703 }
         ],
         'ndure': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 780, y: 726 },
-            // { x: 773, y: 702 }
         ],
         'levis': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 875, y: 727 },
-            // { x: 869, y: 705 }
         ],
         'bata': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 1126, y: 728 },
-            // { x: 1122, y: 702 }
         ],
         'stylo': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 1255, y: 724 },
-            // { x: 1246, y: 705 }
         ],
         'companion': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 1431, y: 730 },
-            // { x: 1425, y: 709 }
         ],
         'walk_eaze': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 1534, y: 730 },
-            // { x: 1528, y: 711 }
         ],
         'mcdonalds': [
             { x: 1349, y: 680 },
             { x: 1354, y: 724 },
             { x: 1655, y: 728 },
-            // { x: 1649, y: 709 }
         ],
         'stairs3': [
             { x: 1349, y: 680 },
             { x: 1324, y: 354 },
             { x: 1183, y: 347 },
-            // { x: 1185, y: 373 }
         ],
         'stairs4': [
             { x: 1349, y: 680 },
             { x: 1343, y: 353 },
             { x: 1466, y: 348 },
-            // { x: 1471, y: 375 }
         ],
-        // 'lift3': [
-        //     { x: 1349, y: 680 },
-        //     { x: 1324, y: 354 },
-        //     { x: 1547, y: 352 },
-        //     // { x: 1550, y: 375 }
-        // ],
-
         'lift2': [
             { x: 1349, y: 680 },
             { x: 1324, y: 354 },
             { x: 1091, y: 345 },
-            // { x: 1101, y: 375 }
         ],
         'lift1': [
             { x: 1349, y: 680 },
@@ -120,7 +75,6 @@ const NAVIGATION_DATA = {
             { x: 952, y: 726 },
             { x: 944, y: 353 },
             { x: 774, y: 348 },
-            // { x: 786, y: 374 }
         ],
         'stairs2': [
             { x: 1349, y: 680 },
@@ -128,14 +82,12 @@ const NAVIGATION_DATA = {
             { x: 952, y: 726 },
             { x: 944, y: 353 },
             { x: 699, y: 347 },
-            // { x: 706, y: 378 }
         ],
         'exit': [
             { x: 1349, y: 680 },
             { x: 1357, y: 724 },
             { x: 596, y: 719 }
         ],
-
     },
     'first-floor': {
         'habib-metro-bank': [
@@ -147,7 +99,8 @@ const NAVIGATION_DATA = {
             { x: 1330, y: 463 },
             { x: 1329, y: 432 },
             { x: 891, y: 432 }
-        ], 'engine': [
+        ],
+        'engine': [
             { x: 1330, y: 463 },
             { x: 1329, y: 432 },
             { x: 1149, y: 436 }
@@ -207,11 +160,43 @@ const NAVIGATION_DATA = {
             { x: 1330, y: 403 },
             { x: 1484, y: 401 }
         ],
-
-        // First floor ke routes yahan add karoge
     },
     'restaurant-floor': {
-        // Restaurant floor ke routes yahan add karoge
+        'angeethi': [
+            // Route 1: From Elevator
+            [
+                { x: 960, y: 551 },
+                { x: 960, y: 631 },
+                { x: 1513, y: 633 },
+                { x: 1612, y: 633 },
+                { x: 1612, y: 594 }
+            ],
+            // Route 2: From Escalator
+            [
+                { x: 1111, y: 419 },
+                { x: 1267, y: 423 },
+                { x: 1264, y: 618 },
+                { x: 1512, y: 618 },
+                { x: 1562, y: 618 },
+                { x: 1562, y: 594 }
+            ],
+            // [
+            //     { x: 796, y: 418 },
+            //     { x: 1256, y: 422 },
+            //     { x: 1257, y: 625 },
+            //     { x: 1512, y: 627 }
+            // ]
+        ],
+        'taj-darbar': [
+            { x: 960, y: 551 },
+            { x: 958, y: 620 },
+            { x: 1110, y: 620 },
+        ],
+        'peak-a-bear': [
+            { x: 960, y: 551 },
+            { x: 958, y: 620 },
+            { x: 615, y: 622 },
+        ],
     }
 };
 
@@ -231,7 +216,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         onMapClickRef.current = onMapClick;
     }, [onMapClick]);
 
-    // ✅ "YOU ARE HERE" marker sirf Ground Floor pe
     const addYouAreHere = (scene) => {
         if (floor !== 'ground-floor') return;
 
@@ -264,73 +248,85 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         return circleTextureRef.current;
     };
 
+    // ✅ UPDATED: Multiple Routes Support
     const drawDynamicRoute = (scene, targetId) => {
         console.log("Drawing route for:", targetId, "on floor:", floor);
-        const oldRoute = scene.getObjectByName("active-route");
-
-        if (oldRoute && oldRoute.userData.targetId === targetId) return;
-
-        if (oldRoute) {
-            if (oldRoute.geometry) oldRoute.geometry.dispose();
-            if (oldRoute.material) {
-                if (oldRoute.material.map && oldRoute.material.map !== circleTextureRef.current) {
-                    oldRoute.material.map.dispose();
+        
+        // ✅ Remove ALL old routes (not just one)
+        const oldRoutes = scene.children.filter(obj => obj.name === "active-route");
+        oldRoutes.forEach(route => {
+            if (route.geometry) route.geometry.dispose();
+            if (route.material) {
+                if (route.material.map && route.material.map !== circleTextureRef.current) {
+                    route.material.map.dispose();
                 }
-                oldRoute.material.dispose();
+                route.material.dispose();
             }
-            scene.remove(oldRoute);
-        }
+            scene.remove(route);
+        });
 
-        const pathPoints = NAVIGATION_DATA[floor]?.[targetId];
-        if (!pathPoints) {
+        const allPaths = NAVIGATION_DATA[floor]?.[targetId];
+        if (!allPaths) {
             console.warn("No path data found for ID:", targetId, "on floor:", floor);
             return;
         }
 
-        const cornerPoints = pathPoints.map(p => new THREE.Vector3(p.x - OFFSET_X, 5, p.y - OFFSET_Y));
-        const straightPoints = [];
-        for (let i = 0; i < cornerPoints.length - 1; i++) {
-            const start = cornerPoints[i];
-            const end = cornerPoints[i + 1];
-            const distance = start.distanceTo(end);
-            const segments = Math.max(Math.floor(distance / 20), 2);
-            for (let j = 0; j <= segments; j++) {
-                straightPoints.push(new THREE.Vector3().lerpVectors(start, end, j / segments));
+        // ✅ Check if single path or multiple paths
+        const pathsArray = Array.isArray(allPaths[0]) ? allPaths : [allPaths];
+
+        // ✅ Create separate route for each path
+        pathsArray.forEach((singlePath, index) => {
+            const cornerPoints = singlePath.map(p => new THREE.Vector3(p.x - OFFSET_X, 5, p.y - OFFSET_Y));
+            const straightPoints = [];
+            
+            for (let i = 0; i < cornerPoints.length - 1; i++) {
+                const start = cornerPoints[i];
+                const end = cornerPoints[i + 1];
+                const distance = start.distanceTo(end);
+                const segments = Math.max(Math.floor(distance / 20), 2);
+                for (let j = 0; j <= segments; j++) {
+                    straightPoints.push(new THREE.Vector3().lerpVectors(start, end, j / segments));
+                }
             }
-        }
 
-        const geometry = new THREE.BufferGeometry().setFromPoints(straightPoints);
-        const material = new THREE.PointsMaterial({
-            color: 0x000000,
-            size: 10,
-            map: getCircleTexture(),
-            transparent: true,
-            alphaTest: 0.1,
-            sizeAttenuation: true,
-            depthWrite: false
+            const geometry = new THREE.BufferGeometry().setFromPoints(straightPoints);
+            
+            // ✅ Different colors for different routes (optional)
+            const colors = [0x000000, 0x1e40af, 0x7c3aed]; // Black, Blue, Purple
+            const routeColor = colors[index % colors.length];
+            
+            const material = new THREE.PointsMaterial({
+                color: routeColor,
+                size: 10,
+                map: getCircleTexture(),
+                transparent: true,
+                alphaTest: 0.1,
+                sizeAttenuation: true,
+                depthWrite: false
+            });
+
+            const route = new THREE.Points(geometry, material);
+            route.name = "active-route"; // Same name for all routes
+            route.renderOrder = 9999;
+
+            route.userData = {
+                targetId: targetId,
+                routeIndex: index,
+                currentPoint: 0,
+                totalPoints: straightPoints.length,
+                drawSpeed: 0.2,
+                isFullyDrawn: false,
+                glowOffset: 0,
+                isGlowDone: false
+            };
+
+            route.geometry.setDrawRange(0, 0);
+            scene.add(route);
         });
-
-        const route = new THREE.Points(geometry, material);
-        route.name = "active-route";
-        route.renderOrder = 9999;
-
-        route.userData = {
-            targetId: targetId,
-            currentPoint: 0,
-            totalPoints: straightPoints.length,
-            drawSpeed: 0.2,
-            isFullyDrawn: false,
-            glowOffset: 0,
-            isGlowDone: false
-        };
-
-        route.geometry.setDrawRange(0, 0);
-        scene.add(route);
     };
 
     const addLabels = (mesh, props, scene) => {
         if (props.type === 'retail' || props.type === 'food' || props.type === 'fun' || props.type === 'banking') {
-            // ✅ First floor ke e-shop ko skip karo
             if (floor === 'first-floor' && props.id.toLowerCase().includes('e-shop')) {
                 return;
             }
@@ -401,13 +397,11 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         const container = mountRef.current;
         const scene = sceneRef.current;
 
-        // 1. Initial dimensions refresh ke waqt current container se lein
         let width = container.clientWidth;
         let height = container.clientHeight;
 
         scene.background = new THREE.Color(0xffffff);
 
-        // 2. Camera Setup
         const d = 450;
         const aspect = width / height;
         const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 5000);
@@ -415,7 +409,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         camera.lookAt(0, 0, 0);
         cameraRef.current = camera;
 
-        // 3. WebGL Renderer
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
             precision: "lowp",
@@ -426,7 +419,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         const initialHeight = container.clientHeight || window.innerHeight;
 
         renderer.setSize(initialWidth, initialHeight);
-        renderer.setPixelRatio(1); // TV pixel density bypass karne ke liye
+        renderer.setPixelRatio(1);
 
         renderer.domElement.style.position = 'absolute';
         renderer.domElement.style.top = '0';
@@ -435,7 +428,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         renderer.domElement.style.height = '100%';
         container.appendChild(renderer.domElement);
 
-        // 4. CSS2D Renderer (Logos ke liye)
         const labelRenderer = new CSS2DRenderer();
         labelRenderer.setSize(width, height);
         labelRenderer.domElement.style.position = 'absolute';
@@ -448,33 +440,26 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         container.appendChild(labelRenderer.domElement);
         labelRendererRef.current = labelRenderer;
 
-        // 5. ✅ Master Resize Handler (Refresh aur Screen change dono ke liye)
         const handleResize = () => {
             if (!container || isUnmountingRef.current) return;
 
-            // Current size dobara nikalna zaroori hai
             const newWidth = container.clientWidth;
             const newHeight = container.clientHeight;
 
-            // Agar container size zero ho (kabhi kabhi mount pe hota hai), toh skip karein
             if (newWidth === 0 || newHeight === 0) return;
 
             const newAspect = newWidth / newHeight;
 
-            // Camera frustum update (Stretch rokne ke liye)
             camera.left = -d * newAspect;
             camera.right = d * newAspect;
             camera.top = d;
             camera.bottom = -d;
             camera.updateProjectionMatrix();
 
-            // Dono renderers ko exact same size dein taake logos alignment na chorein
             renderer.setSize(newWidth, newHeight);
             labelRenderer.setSize(newWidth, newHeight);
         };
 
-        // 🚀 Refresh fix: Mount hote hi foran call karein
-        // Is se F11 ke bagair bhi layout set ho jayega
         setTimeout(handleResize, 100);
 
         window.addEventListener('resize', handleResize);
@@ -504,7 +489,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             const raycaster = new THREE.Raycaster();
             raycaster.setFromCamera(mouse, cameraRef.current);
 
-            // Ground plane coordinates (for debugging)
             const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
             const intersectPoint = new THREE.Vector3();
             raycaster.ray.intersectPlane(groundPlane, intersectPoint);
@@ -532,13 +516,11 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
                         onMapClickRef.current(data.id);
                     }
                 } else {
-                    // ✅ Plain surface (no ID) clicked - clear selection
                     if (onMapClickRef.current) {
                         onMapClickRef.current(null);
                     }
                 }
             } else {
-                // ✅ Empty area clicked - clear selection
                 if (onMapClickRef.current) {
                     onMapClickRef.current(null);
                 }
@@ -558,7 +540,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             }
             const geometry = new THREE.ShapeGeometry(shape);
 
-            // ✅ Floor-specific color logic
             let mapColor;
             if (props.type === 'path') {
                 mapColor = 0xcbd5e1;
@@ -581,7 +562,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             const mesh = new THREE.Mesh(geometry, material);
             mesh.rotation.x = Math.PI / 2;
 
-            // ✅ Floor-specific positioning
             if (floor === 'first-floor' && props.id === 'wall') {
                 mesh.position.y = -2;
             } else if (floor === 'restaurant-floor' && props.id.includes('wall')) {
@@ -602,7 +582,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             addLabels(mesh, props, scene);
         };
 
-        // ✅ Dynamically load floor JSON
         fetch(`/assets/maps/${floor}.json`)
             .then(res => res.json())
             .then(data => {
@@ -618,36 +597,35 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
                 }, 100);
             });
 
+        // ✅ UPDATED: Animate ALL routes
         const animate = () => {
             if (isUnmountingRef.current) return;
-
             animationFrameRef.current = requestAnimationFrame(animate);
 
-            if (controlsRef.current) {
-                controlsRef.current.update();
-            }
+            if (controlsRef.current) controlsRef.current.update();
 
-            // Route animation
-            const activeRoute = scene.getObjectByName("active-route");
-            if (activeRoute && activeRoute.material) {
-                const data = activeRoute.userData;
-                if (!data.isFullyDrawn) {
-                    data.currentPoint += data.drawSpeed;
-                    const drawCount = Math.min(Math.floor(data.currentPoint), data.totalPoints);
-                    activeRoute.geometry.setDrawRange(0, drawCount);
-                    if (data.currentPoint >= data.totalPoints) data.isFullyDrawn = true;
-                } else if (!data.isGlowDone) {
-                    data.glowOffset += 0.05;
-                    const pulse = Math.sin(data.glowOffset);
-                    activeRoute.material.opacity = 0.7 + pulse * 0.3;
-                    activeRoute.material.size = 12 + pulse * 4;
-                    if (data.glowOffset >= Math.PI) {
-                        data.isGlowDone = true;
-                        activeRoute.material.opacity = 0.9;
-                        activeRoute.material.size = 12;
+            // ✅ Loop through ALL active routes (not just one)
+            scene.children.forEach(obj => {
+                if (obj.name === "active-route" && obj.material) {
+                    const data = obj.userData;
+                    if (!data.isFullyDrawn) {
+                        data.currentPoint += data.drawSpeed;
+                        const drawCount = Math.min(Math.floor(data.currentPoint), data.totalPoints);
+                        obj.geometry.setDrawRange(0, drawCount);
+                        if (data.currentPoint >= data.totalPoints) data.isFullyDrawn = true;
+                    } else if (!data.isGlowDone) {
+                        data.glowOffset += 0.05;
+                        const pulse = Math.sin(data.glowOffset);
+                        obj.material.opacity = 0.7 + pulse * 0.3;
+                        obj.material.size = 12 + pulse * 4;
+                        if (data.glowOffset >= Math.PI) {
+                            data.isGlowDone = true;
+                            obj.material.opacity = 0.9;
+                            obj.material.size = 12;
+                        }
                     }
                 }
-            }
+            });
 
             cameraRef.current.updateMatrixWorld();
             renderer.render(scene, cameraRef.current);
@@ -660,24 +638,24 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             isUnmountingRef.current = true;
             window.removeEventListener('resize', handleResize);
             renderer.domElement.removeEventListener('click', handlePointer);
+            renderer.domElement.removeEventListener('touchend', handlePointer);
+            
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
             }
 
-            renderer.domElement.removeEventListener('click', handlePointer);
-            renderer.domElement.removeEventListener('touchend', handlePointer);
-
-            const activeRoute = scene.getObjectByName("active-route");
-            if (activeRoute) {
-                if (activeRoute.geometry) activeRoute.geometry.dispose();
-                if (activeRoute.material) {
-                    if (activeRoute.material.map && activeRoute.material.map !== circleTextureRef.current) {
-                        activeRoute.material.map.dispose();
+            // ✅ UPDATED: Clean up ALL routes
+            const activeRoutes = scene.children.filter(obj => obj.name === "active-route");
+            activeRoutes.forEach(route => {
+                if (route.geometry) route.geometry.dispose();
+                if (route.material) {
+                    if (route.material.map && route.material.map !== circleTextureRef.current) {
+                        route.material.map.dispose();
                     }
-                    activeRoute.material.dispose();
+                    route.material.dispose();
                 }
-                scene.remove(activeRoute);
-            }
+                scene.remove(route);
+            });
 
             if (circleTextureRef.current) {
                 circleTextureRef.current.dispose();
@@ -704,7 +682,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
                 container.innerHTML = "";
             }
         };
-    }, [floor]); // ✅ Floor change hone par reload
+    }, [floor]);
 
     useEffect(() => {
         objectsRef.current.forEach(obj => {
@@ -725,23 +703,25 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         });
 
         const scene = sceneRef.current;
-        const oldRoute = scene.getObjectByName("active-route");
 
         if (showRoute && selectedId && NAVIGATION_DATA[floor]?.[selectedId]) {
             console.log("Drawing route for:", selectedId);
             drawDynamicRoute(scene, selectedId);
         } else {
             console.log("Route conditions not met", { showRoute, selectedId });
-            if (oldRoute) {
-                if (oldRoute.geometry) oldRoute.geometry.dispose();
-                if (oldRoute.material) {
-                    if (oldRoute.material.map && oldRoute.material.map !== circleTextureRef.current) {
-                        oldRoute.material.map.dispose();
+            
+            // ✅ UPDATED: Remove ALL routes
+            const oldRoutes = scene.children.filter(obj => obj.name === "active-route");
+            oldRoutes.forEach(route => {
+                if (route.geometry) route.geometry.dispose();
+                if (route.material) {
+                    if (route.material.map && route.material.map !== circleTextureRef.current) {
+                        route.material.map.dispose();
                     }
-                    oldRoute.material.dispose();
+                    route.material.dispose();
                 }
-                scene.remove(oldRoute);
-            }
+                scene.remove(route);
+            });
         }
     }, [selectedId, showRoute, floor]);
 
