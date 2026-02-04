@@ -163,7 +163,7 @@ const NAVIGATION_DATA = {
     },
     'restaurant-floor': {
         'angeethi': [
-            // Route 1: From Elevator
+            // Route 1: From Escalator
             [
                 { x: 960, y: 551 },
                 { x: 960, y: 631 },
@@ -171,7 +171,7 @@ const NAVIGATION_DATA = {
                 { x: 1612, y: 633 },
                 { x: 1612, y: 594 }
             ],
-            // Route 2: From Escalator
+            // Route 2: From Elevator
             [
                 { x: 1111, y: 419 },
                 { x: 1267, y: 423 },
@@ -180,23 +180,59 @@ const NAVIGATION_DATA = {
                 { x: 1562, y: 618 },
                 { x: 1562, y: 594 }
             ],
-            // [
-            //     { x: 796, y: 418 },
-            //     { x: 1256, y: 422 },
-            //     { x: 1257, y: 625 },
-            //     { x: 1512, y: 627 }
-            // ]
+            [
+                { x: 796, y: 419 },
+                { x: 971, y: 419 },
+                { x: 973, y: 622 },
+                { x: 1512, y: 627 },
+                { x: 1512, y: 594 }
+            ]
         ],
         'taj-darbar': [
+            [
             { x: 960, y: 551 },
             { x: 958, y: 620 },
             { x: 1110, y: 620 },
+            { x: 1110, y: 594 },
+        ],
+        [
+            { x: 1111, y: 419 },
+            { x: 1267, y: 423 },
+            { x: 1267, y: 619 },
+            { x: 1132, y: 619 },
+            { x: 1132, y: 594 }
+
+        ],
+        [
+            { x: 796, y: 419 },
+            { x: 973, y: 419 },
+            { x: 973, y: 596 },
+            { x: 1086, y: 596 }
+        ],
+            
         ],
         'peak-a-bear': [
+            [
             { x: 960, y: 551 },
             { x: 958, y: 620 },
             { x: 615, y: 622 },
         ],
+        [
+            { x: 1111, y: 419 },
+            { x: 973, y: 419 },
+            { x: 973, y: 610 },
+            { x: 655, y: 610 },
+            // { x: 655, y: 594 },
+
+        ],
+        [
+            { x: 796, y: 419 },
+            { x: 934, y: 419 },
+            { x: 934, y: 597 },
+            { x: 695, y: 597 }
+
+        ]
+    ]
     }
 };
 
@@ -251,7 +287,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
     // ✅ UPDATED: Multiple Routes Support
     const drawDynamicRoute = (scene, targetId) => {
         console.log("Drawing route for:", targetId, "on floor:", floor);
-        
+
         // ✅ Remove ALL old routes (not just one)
         const oldRoutes = scene.children.filter(obj => obj.name === "active-route");
         oldRoutes.forEach(route => {
@@ -278,7 +314,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         pathsArray.forEach((singlePath, index) => {
             const cornerPoints = singlePath.map(p => new THREE.Vector3(p.x - OFFSET_X, 5, p.y - OFFSET_Y));
             const straightPoints = [];
-            
+
             for (let i = 0; i < cornerPoints.length - 1; i++) {
                 const start = cornerPoints[i];
                 const end = cornerPoints[i + 1];
@@ -290,11 +326,11 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             }
 
             const geometry = new THREE.BufferGeometry().setFromPoints(straightPoints);
-            
+
             // ✅ Different colors for different routes (optional)
             const colors = [0x000000, 0x1e40af, 0x7c3aed]; // Black, Blue, Purple
             const routeColor = colors[index % colors.length];
-            
+
             const material = new THREE.PointsMaterial({
                 color: routeColor,
                 size: 10,
@@ -639,7 +675,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             window.removeEventListener('resize', handleResize);
             renderer.domElement.removeEventListener('click', handlePointer);
             renderer.domElement.removeEventListener('touchend', handlePointer);
-            
+
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current);
             }
@@ -709,7 +745,7 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             drawDynamicRoute(scene, selectedId);
         } else {
             console.log("Route conditions not met", { showRoute, selectedId });
-            
+
             // ✅ UPDATED: Remove ALL routes
             const oldRoutes = scene.children.filter(obj => obj.name === "active-route");
             oldRoutes.forEach(route => {
