@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 
-const Sidebar = ({ stores, time, onStoreSelect }) => {
+const Sidebar = ({ stores, time, onStoreSelect, clickCounts = {} }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
-    // 1. Filter: Retail, Food, Fun, aur Banking types ko nikaalna
-    // Hum sirf unhe dikhayenge jin ka valid name ho
     const allBrandsRaw = stores.filter(s =>
         (s.properties.type === 'retail' || s.properties.type === 'food' || s.properties.type === 'fun' || s.properties.type === 'banking') &&
         s.properties.name
     );
 
-    // 2. Unique List Logic: 
-    // Agar ek hi brand ke multiple units hain (e.g. Peak-A-Bear-1, Peak-A-Bear-2), 
-    // toh list mein sirf ek dafa dikhayein.
     const uniqueBrands = [];
     const seenNames = new Set();
 
@@ -24,36 +19,25 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
         }
     });
 
-    // 3. Search Logic
     const filtered = uniqueBrands.filter(s =>
         s.properties.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // 4. Logo File Name Cleaner
-    // Agar ID 'hush-puppies-1' hai toh '-1' hata kar 'hush-puppies.png' dhoondega
     const getLogoName = (id) => {
         return id.replace(/-[0-9]$/, '');
     };
 
-    // ✨ NAYA: Enter key handler - keyboard band aur shop select
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
             
-            // Agar filtered results mein kuch hai toh pehla result select karo
             if (filtered.length > 0) {
                 const firstStore = filtered[0];
-                
-                // Keyboard band karo - input se focus hata do
                 e.target.blur();
                 
-                // Thoda delay ke baad select karo (keyboard animation ke liye)
                 setTimeout(() => {
                     onStoreSelect(firstStore.properties.id);
                 }, 100);
-                
-                // Optional: Search clear bhi kar do selection ke baad
-                // setSearchQuery("");
             }
         }
     };
@@ -63,6 +47,9 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
             <header className="directory-header">
                 <div className="kiosk-time">{time}</div>
                 <h1>STORES & DINING</h1>
+                
+                {/* Analytics moved to map - cleaner sidebar */}
+                
                 <div className="search-container">
                     <input
                         type="text"
@@ -86,6 +73,7 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
                     filtered.map(store => {
                         const { id, name, type } = store.properties;
                         const logoFileName = getLogoName(id);
+                        const clickCount = clickCounts[id] || 0;
 
                         return (
                             <div
@@ -103,6 +91,9 @@ const Sidebar = ({ stores, time, onStoreSelect }) => {
                                         }}
                                         alt={name}
                                     />
+                                    {clickCount > 0 && (
+                                        <span className="store-click-badge">{clickCount}</span>
+                                    )}
                                 </div>
                                 <div className="store-info">
                                     <span className="store-name">{name}</span>

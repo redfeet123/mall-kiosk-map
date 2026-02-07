@@ -244,6 +244,7 @@ html {
     margin-bottom: 12px;
     border-radius: 20px;
     cursor: pointer;
+    gap: 10px;
 }
 
 .store-logo {
@@ -816,7 +817,7 @@ html {
 
 .button-icon {
     font-size: 2rem;
-    animation: pulse 2s ease-in-out infinite;
+    animation: pulse-btn 2s ease-in-out infinite;
 }
 
 .tap-instruction {
@@ -848,7 +849,7 @@ html {
     }
 }
 
-@keyframes pulse {
+@keyframes pulse-btn {
     0%, 100% {
         transform: scale(1);
     }
@@ -900,4 +901,525 @@ html {
         padding: 35px 80px;
         font-size: 2.2rem;
     }
+}
+
+/* ========================================
+   🎯 FOOTER WITH TABS - Analytics & Emergency
+   ======================================== */
+
+.kiosk-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    max-height: 35vh;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Tab Buttons */
+.footer-tabs {
+    display: flex;
+    background: rgba(248, 250, 252, 0.9);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    padding: 0 20px;
+}
+
+.footer-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    position: relative;
+}
+
+.footer-tab:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: #334155;
+}
+
+.footer-tab.active {
+    color: #1e293b;
+    border-bottom-color: #667eea;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.tab-icon {
+    font-size: 22px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.tab-label {
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.tab-arrow {
+    font-size: 12px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.footer-tab.active .tab-arrow {
+    transform: rotate(0deg);
+}
+
+.footer-tab:not(.active) .tab-arrow {
+    transform: rotate(-90deg);
+}
+
+/* Footer Content */
+.footer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+.footer-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.footer-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.footer-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+/* Analytics Tab */
+.analytics-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border-left: 4px solid;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.primary {
+    border-left-color: #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+}
+
+.stat-card.secondary {
+    border-left-color: #f093fb;
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.05), rgba(245, 87, 108, 0.05));
+}
+
+.stat-card.accent {
+    border-left-color: #4facfe;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.05), rgba(0, 242, 254, 0.05));
+}
+
+.stat-card.highlight {
+    border-left-color: #facc15;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.05), rgba(234, 88, 12, 0.05));
+}
+
+.stat-icon {
+    font-size: 36px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    font-family: 'Courier New', monospace;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+/* Top Stores Section */
+.top-stores-section {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.top-stores-table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.top-store-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.top-store-row:hover {
+    transform: translateX(4px);
+    border-left-color: #667eea;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.rank {
+    font-size: 24px;
+    font-weight: 700;
+    color: #94a3b8;
+    min-width: 40px;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.top-store-row:nth-child(1) .rank {
+    color: #f59e0b;
+    text-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.top-store-row:nth-child(2) .rank {
+    color: #94a3b8;
+    text-shadow: 0 2px 4px rgba(148, 163, 184, 0.3);
+}
+
+.top-store-row:nth-child(3) .rank {
+    color: #cd7f32;
+    text-shadow: 0 2px 4px rgba(205, 127, 50, 0.3);
+}
+
+.store-details {
+    flex: 1;
+}
+
+.store-floor {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.store-clicks {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.clicks-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.clicks-text {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* Emergency Tab */
+.emergency-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.emergency-title {
+    color: #dc2626;
+    font-size: 18px;
+}
+
+.emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.emergency-card {
+    display: flex;
+    gap: 16px;
+    padding: 18px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.emergency-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    border-color: #667eea;
+}
+
+.emergency-icon {
+    font-size: 42px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.emergency-icon.security {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.emergency-icon.medical {
+    background: linear-gradient(135deg, #fecdd3 0%, #fda4af 100%);
+}
+
+.emergency-icon.fire {
+    background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+}
+
+.emergency-icon.lost {
+    background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+}
+
+.emergency-icon.info {
+    background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
+}
+
+.emergency-icon.management {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.emergency-info {
+    flex: 1;
+}
+
+.emergency-info h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.emergency-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: #dc2626;
+    margin-bottom: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.emergency-desc {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.emergency-instructions {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 16px 20px;
+    border-radius: 12px;
+    border-left: 4px solid #f59e0b;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+.emergency-instructions p {
+    margin: 0;
+    color: #92400e;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* Click Counter Badge (Store Panel) */
+.click-counter-badge {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+    display: inline-block;
+    box-shadow: 0 3px 10px rgba(79, 172, 254, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/* Logo Wrapper for Click Badges in Sidebar */
+.logo-wrapper {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.store-click-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 12px;
+    min-width: 24px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(245, 87, 108, 0.4);
+    border: 2px solid white;
+    z-index: 10;
+    animation: badge-pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes badge-pop {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Footer */
+@media (max-width: 1400px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .emergency-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid,
+    .emergency-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-tabs {
+        padding: 0 10px;
+    }
+
+    .footer-tab {
+        padding: 12px 16px;
+        font-size: 12px;
+    }
+
+    .tab-icon {
+        font-size: 18px;
+    }
+}
+
+/* Clear search button */
+.clear-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.clear-search:hover {
+    color: #64748b;
+}
+
+.kiosk-time {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 10px;
 }
