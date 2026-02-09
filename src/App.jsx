@@ -3,6 +3,12 @@ import Sidebar from './components/Sidebar';
 import FloorMap from './components/FloorMap';
 import './App.css';
 
+const trackEvent = (eventName, params = {}) => {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+};
+
 const App = () => {
   const [selectedStoreId, setSelectedStoreId] = useState(null);
   const [currentTime, setCurrentTime] = useState("");
@@ -13,7 +19,7 @@ const App = () => {
   // Scaling Logic for Kiosk Resolution
   useEffect(() => {
     const handleScaling = () => {
-      const baseWidth = 1920; 
+      const baseWidth = 1920;
       const currentWidth = window.innerWidth;
       const scale = currentWidth / baseWidth;
 
@@ -76,7 +82,7 @@ const App = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleStoreClick = (id) => {
+  const handleStoreClick = (id, source = 'unknown') => {
     if (!id) {
       setSelectedStoreId(null);
       setShowRoute(false);
@@ -84,7 +90,7 @@ const App = () => {
     }
 
     const store = allStores.find(s => s.properties.id === id);
-    
+
     if (store) {
       setActiveFloor(store.properties.floor);
       setSelectedStoreId(id);
@@ -93,7 +99,14 @@ const App = () => {
       setSelectedStoreId(id);
       setShowRoute(true);
     }
+
+    trackEvent('store_click', {
+      store_id: id,
+      floor: store ? store.properties.floor : activeFloor,
+      source, // 'map' or 'sidebar'
+    });
   };
+
 
   const selectedStoreData = allStores.find(s => s.properties.id === selectedStoreId);
 
@@ -110,6 +123,7 @@ const App = () => {
                 setActiveFloor(f);
                 setSelectedStoreId(null);
                 setShowRoute(false);
+                trackEvent('floor_switched', { floor: f });
               }}
             >
               {f === 'ground-floor' ? 'GF' : f === 'first-floor' ? '1F' : 'RF'}
@@ -149,7 +163,7 @@ const App = () => {
                   const type = selectedStoreData.properties.type;
                   const name = selectedStoreData.properties.name;
                   const floor = activeFloor.replace('-', ' ');
-                  
+
                   if (type === 'food') {
                     return `Experience delicious dining at ${name}. Visit us on the ${floor}.`;
                   } else if (type === 'fun') {
@@ -164,21 +178,21 @@ const App = () => {
             </div>
 
             <div className="panel-footer">
-              {!showRoute ? (
-                <button className="btn-directions" onClick={() => setShowRoute(true)}>
-                  GET DIRECTIONS
-                </button>
-              ) : (
-                <button className="btn-clear" onClick={() => setShowRoute(false)}>
-                  CLEAR ROUTE
-                </button>
-              )}
+              <Sidebar
+                stores={allStores}
+                time={currentTime}
+                onStoreSelect={(id) => handleStoreClick(id, 'sidebar')}
+              />
             </div>
           </div>
         )}
       </section>
 
-      <Sidebar stores={allStores} time={currentTime} onStoreSelect={handleStoreClick} />
+      <Sidebar
+        stores={allStores}
+        time={currentTime}
+        onStoreSelect={(id) => handleStoreClick(id, 'sidebar')}
+      />
     </div>
   );
 };
