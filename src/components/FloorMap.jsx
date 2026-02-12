@@ -510,7 +510,6 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
         scene.add(new THREE.AmbientLight(0xffffff, 1.5));
 
         const handlePointer = (e) => {
-            console.log("Screen Clicked!");
             if (!cameraRef.current || !mountRef.current) return;
 
             const rect = mountRef.current.getBoundingClientRect();
@@ -532,7 +531,15 @@ const FloorMap = ({ floor, selectedId, onMapClick, showRoute }) => {
             if (intersectPoint) {
                 const actualX = Math.round(intersectPoint.x + OFFSET_X);
                 const actualY = Math.round(intersectPoint.z + OFFSET_Y);
-                console.log(`{ x: ${actualX}, y: ${actualY} },`);
+
+                // Google Analytics: generic screen touch on map
+                if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                    window.gtag('event', 'screen_touch', {
+                        x: actualX,
+                        y: actualY,
+                        floor,
+                    });
+                }
             }
 
             const mapIntersects = raycaster.intersectObjects(objectsRef.current, true);

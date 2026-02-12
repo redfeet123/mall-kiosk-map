@@ -10,6 +10,13 @@ const App = () => {
   const [allStores, setAllStores] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
 
+  // Simple Google Analytics event helper
+  const trackEvent = (eventName, params = {}) => {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+  };
+
   // Scaling Logic for Kiosk Resolution
   useEffect(() => {
     const handleScaling = () => {
@@ -76,7 +83,16 @@ const App = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleStoreClick = (id) => {
+  // Initial floor view tracking
+  useEffect(() => {
+    trackEvent('floor_viewed', {
+      floor: activeFloor,
+      source: 'initial_load',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleStoreClick = (id, source = 'unknown') => {
     if (!id) {
       setSelectedStoreId(null);
       setShowRoute(false);
@@ -86,10 +102,36 @@ const App = () => {
     const store = allStores.find(s => s.properties.id === id);
     
     if (store) {
-      setActiveFloor(store.properties.floor);
+      const targetFloor = store.properties.floor;
+
+      // Track store selection
+      trackEvent('store_selected', {
+        store_id: id,
+        store_name: store.properties.name,
+        store_type: store.properties.type,
+        floor: targetFloor,
+        source,
+      });
+
+      // Track floor change if it differs
+      if (activeFloor !== targetFloor) {
+        trackEvent('floor_viewed', {
+          floor: targetFloor,
+          source: 'store_auto_switch',
+        });
+      }
+
+      setActiveFloor(targetFloor);
       setSelectedStoreId(id);
       setShowRoute(false);
     } else {
+      // Store exists in map (or navigation) but not resolved with floor metadata
+      trackEvent('store_selected', {
+        store_id: id,
+        floor: activeFloor,
+        source,
+        resolved: false,
+      });
       setSelectedStoreId(id);
       setShowRoute(true);
     }
@@ -107,6 +149,12 @@ const App = () => {
               key={f}
               className={`floor-btn ${activeFloor === f ? 'active' : ''}`}
               onClick={() => {
+                if (activeFloor !== f) {
+                  trackEvent('floor_viewed', {
+                    floor: f,
+                    source: 'floor_button',
+                  });
+                }
                 setActiveFloor(f);
                 setSelectedStoreId(null);
                 setShowRoute(false);
@@ -122,7 +170,7 @@ const App = () => {
             key={activeFloor}
             floor={activeFloor}
             selectedId={selectedStoreId}
-            onMapClick={handleStoreClick}
+            onMapClick={(id) => handleStoreClick(id, 'map')}
             showRoute={showRoute}
           />
         </div>
@@ -165,11 +213,29 @@ const App = () => {
 
             <div className="panel-footer">
               {!showRoute ? (
-                <button className="btn-directions" onClick={() => setShowRoute(true)}>
+                <button
+                  className="btn-directions"
+                  onClick={() => {
+                    trackEvent('directions_requested', {
+                      store_id: selectedStoreId,
+                      floor: activeFloor,
+                    });
+                    setShowRoute(true);
+                  }}
+                >
                   GET DIRECTIONS
                 </button>
               ) : (
-                <button className="btn-clear" onClick={() => setShowRoute(false)}>
+                <button
+                  className="btn-clear"
+                  onClick={() => {
+                    trackEvent('directions_cleared', {
+                      store_id: selectedStoreId,
+                      floor: activeFloor,
+                    });
+                    setShowRoute(false);
+                  }}
+                >
                   CLEAR ROUTE
                 </button>
               )}
@@ -178,7 +244,11 @@ const App = () => {
         )}
       </section>
 
-      <Sidebar stores={allStores} time={currentTime} onStoreSelect={handleStoreClick} />
+      <Sidebar
+        stores={allStores}
+        time={currentTime}
+        onStoreSelect={(id) => handleStoreClick(id, 'sidebar')}
+      />
     </div>
   );
 };
